@@ -9,7 +9,10 @@ export function Box(props) {
         "width": "50px",
         "height": "50px",
         "backgroundSize": "contain",
-        "backgroundImage": 'url(./img.png)'
+        "backgroundImage": 'url(./img.png)',
+        "marginTop": "35px",
+        "marginBottom": "35px"
+
     };
 
     function select() {
@@ -18,13 +21,12 @@ export function Box(props) {
 
     // update position of box in redux
     function onControlledDrag(e, position) {
+        console.dir(position);
         store.dispatch(boxDragged(props.boxId, position));
-        // const {x, y} = position;
-        // this.setState({controlledPosition: {x, y}});
     }
 
     return (
-        <Draggable grid={[50, 72]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".viewport" onDrag={onControlledDrag}>
+        <Draggable grid={[50, 122]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".viewport" onDrag={onControlledDrag}>
             <div onClick={() => select()} style={styling}/>
         </Draggable>
     )

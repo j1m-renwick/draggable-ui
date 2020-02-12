@@ -14,12 +14,11 @@ export function Grid(props) {
             "left": "10px"
         }}>
             <ArrowGenerator/>
-            <HorizontalLine distance="60"/>
-            <HorizontalLine distance="70"/>
-            <HorizontalLine distance="70"/>
-            <HorizontalLine distance="70"/>
-            <HorizontalLine distance="70"/>
-            <HorizontalLine distance="70"/>
+            {/*TODO generate as many lines as there are steps, and allow y-overflow*/}
+            <HorizontalLine distance="120"/>
+            <HorizontalLine distance="120"/>
+            <HorizontalLine distance="120"/>
+            <HorizontalLine distance="120"/>
         </div>
     )
 }

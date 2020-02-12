@@ -20,7 +20,7 @@ export function ArrowGenerator(props) {
                             console.log(arrowTarget.x);
                             console.log(arrowTarget.y);
                                 return <ArrowSvg start={{x: arrowSource.x + 25, y: arrowSource.y + 50}}
-                                                 end={{x: arrowTarget.x + 25, y: arrowTarget.y + 45}}
+                                                 end={{x: arrowTarget.x + 25, y: arrowTarget.y + 115}}
                                                  orientation={LineOrientation.VERTICAL}/>
                         });
                 }

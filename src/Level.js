@@ -4,12 +4,13 @@ import {Box} from "./Box";
 
 export function Level(props) {
 
-    // TODO remove hardcoding
+    // TODO remove hardcoding!!!! everywhere
     return (
         <>
             {
                 sample.filter(item => item.level === props.level).map(item =>
-                    <Box key={item.id} boxId={item.id} x={0} y={props.level * 22}/>
+                    // 37 = one margin + (border width * 2)
+                    <Box key={item.id} boxId={item.id} x={0} y={props.level * 37}/>
                 )
             }
         </>

@@ -11,6 +11,7 @@ export function ViewPort(props) {
         "borderStyle": "solid",
         "position": "relative",
         "padding": "10px",
+        "paddingTop": "0px",
         "margin": "10px"
     };
 

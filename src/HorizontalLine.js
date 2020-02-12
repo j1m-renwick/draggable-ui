@@ -3,7 +3,7 @@ import React from "react";
 export function HorizontalLine(props) {
 
     var styling = {
-        "borderTop": "2px solid ghostwhite",
+        "borderTop": "1px solid darkgrey",
         "width": "100%",
         "marginTop": props.distance + "px",
     };
