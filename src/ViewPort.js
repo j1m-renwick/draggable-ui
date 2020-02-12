@@ -1,6 +1,7 @@
 import React from "react";
-import {HorizontalLine} from "./HorizontalLine";
-import {Step} from "./Step";
+import {Level} from "./Level";
+import {ArrowGenerator} from "./ArrowGenerator";
+import {Grid} from "./Grid";
 
 export function ViewPort(props) {
 
@@ -15,21 +16,14 @@ export function ViewPort(props) {
 
     // TODO map the number of lines / steps to a prop number - or
     return (
-        <div className= {props.boxRef} style={styling}>
-            <div style={{"position": "absolute", "display": "flex", "flexDirection": "column","width": "auto", "right": "10px", "left": "10px"}}>
-                <HorizontalLine distance="60"/>
-                <HorizontalLine distance="70"/>
-                <HorizontalLine distance="70"/>
-                <HorizontalLine distance="70"/>
-                <HorizontalLine distance="70"/>
-                <HorizontalLine distance="70"/>
-            </div>
-            <Step level={0} arrowRegisterFcn={props.arrowRegisterFcn}/>
-            <Step level={1} arrowRegisterFcn={props.arrowRegisterFcn}/>
-            <Step level={2} arrowRegisterFcn={props.arrowRegisterFcn}/>
-            <Step level={3} arrowRegisterFcn={props.arrowRegisterFcn}/>
-            <Step level={4} arrowRegisterFcn={props.arrowRegisterFcn}/>
-            <Step level={5} arrowRegisterFcn={props.arrowRegisterFcn}/>
+        <div className={props.boxRef} style={styling}>
+            <Grid/>
+            <Level level={0}/>
+            <Level level={1}/>
+            <Level level={2}/>
+            <Level level={3}/>
+            <Level level={4}/>
+            <Level level={5}/>
         </div>
     )
 }

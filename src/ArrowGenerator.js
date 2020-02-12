@@ -1,20 +1,31 @@
 import React from "react";
 import {sample} from "./sample";
-import {ArrowBetweenDivs, ArrowAnchorPlacement, LineOrientation} from "react-simple-arrows";
+import {ArrowSvg, LineOrientation} from "react-simple-arrows";
+import {useSelector} from "react-redux";
 
 export function ArrowGenerator(props) {
 
+    const arrows = useSelector(state => state.arrows);
+
     return (
         <>
-            {/*{*/}
-            {/*    sample.filter(item => item.children !== undefined).map(item =>*/}
-                    <ArrowBetweenDivs
-                        from={{ id: "9890c7a3-033f-4d13-9176-27b72915682a", placement: ArrowAnchorPlacement.BOTTOM }}
-                        to={{ id: '5c6e4997-ab58-442a-be0b-ca91eb18d63b', placement: ArrowAnchorPlacement.TOP }}
-                        orientation={LineOrientation.VERTICAL}
-                    />
-            {/*    )*/}
-            {/*}*/}
+            {
+                sample.filter(item => item.children !== undefined).map(item => {
+                    console.dir(arrows);
+                    let arrowSource = arrows.find(i => i.id === item.id);
+                        return item.children.map(child => {
+                            let arrowTarget = arrows.find(i => i.id === child.childId);
+                            console.log(arrowSource.x);
+                            console.log(arrowSource.y);
+                            console.log(arrowTarget.x);
+                            console.log(arrowTarget.y);
+                                return <ArrowSvg start={{x: arrowSource.x + 25, y: arrowSource.y + 50}}
+                                                 end={{x: arrowTarget.x + 25, y: arrowTarget.y + 45}}
+                                                 orientation={LineOrientation.VERTICAL}/>
+                        });
+                }
+            )
+            }
         </>
     )
 }

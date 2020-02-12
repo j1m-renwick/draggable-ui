@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {useSelector} from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
@@ -15,9 +15,7 @@ export function Config(props) {
         "margin": "10px"
     };
 
-    const [showingId, setShowingId] = useState(null);
-
-    const id = useSelector(state => state.id);
+    const id = useSelector(state => state.focusedBoxId);
 
     function getConfig(id) {
         return sample.find(item => item.id === id).config;

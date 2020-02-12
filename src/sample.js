@@ -9,13 +9,13 @@ export const sample = [
         },
         "children": [
             {
-                "childId": 2,
+                "childId": "5c6e4997-ab58-442a-be0b-ca91eb18d63b",
                 "linkedAnswer": "Run's house"
             },
-            {
-                "childId": 3,
-                "linkedAnswer": "Joe's house"
-            }
+            // {
+            //     "childId": 3,
+            //     "linkedAnswer": "Joe's house"
+            // }
         ]
     },
     {

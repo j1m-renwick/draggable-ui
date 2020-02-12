@@ -1,6 +1,6 @@
 import Draggable from "react-draggable";
-import React, {useState} from "react";
-import {toggle} from "./redux/actions";
+import React from "react";
+import {boxDragged, boxFocused} from "./redux/actions";
 import {store} from "./redux/store"
 
 export function Box(props) {
@@ -12,25 +12,20 @@ export function Box(props) {
         "backgroundImage": 'url(./img.png)'
     };
 
-    // const [isSelected, setSelected] = useState(false);
-
     function select() {
-        // if (!isSelected) {
-            store.dispatch(toggle(props.boxId));
-        //     setSelected(true);
-        // }
+        store.dispatch(boxFocused(props.boxId));
     }
 
-    function deselect() {
-        // if (isSelected) {
-            store.dispatch(toggle(null));
-        //     setSelected(false);
-        // }
+    // update position of box in redux
+    function onControlledDrag(e, position) {
+        store.dispatch(boxDragged(props.boxId, position));
+        // const {x, y} = position;
+        // this.setState({controlledPosition: {x, y}});
     }
 
     return (
-        <Draggable grid={[50, 72]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".viewport">
-            <div ref={(div) => props.arrowRegisterFcn({ id: props.boxId, div })} className="test" onClick={() => select()} style={styling}/>
+        <Draggable grid={[50, 72]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".viewport" onDrag={onControlledDrag}>
+            <div onClick={() => select()} style={styling}/>
         </Draggable>
     )
 

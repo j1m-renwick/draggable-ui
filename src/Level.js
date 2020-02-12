@@ -1,16 +1,15 @@
 import React from "react";
-import {HorizontalLine} from "./HorizontalLine";
 import {sample} from "./sample";
 import {Box} from "./Box";
 
-export function Step(props) {
+export function Level(props) {
 
     // TODO remove hardcoding
     return (
         <>
             {
                 sample.filter(item => item.level === props.level).map(item =>
-                         <Box arrowRegisterFcn={props.arrowRegisterFcn} boxId={item.id} x={0} y={props.level * 22}/>
+                    <Box key={item.id} boxId={item.id} x={0} y={props.level * 22}/>
                 )
             }
         </>
