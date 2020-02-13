@@ -8,11 +8,9 @@ import {store} from "./redux/store";
 function App() {
     return (
         <Provider store={store}>
-            <div className="App">
-                <div className="app">
-                    <ViewPort boxRef="viewport"/>
-                    <Config/>
-                </div>
+            <div className="app">
+                <ViewPort boxRef="viewport"/>
+                <Config/>
             </div>
         </Provider>
     );
