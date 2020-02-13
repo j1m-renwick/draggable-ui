@@ -1,4 +1,5 @@
 import {Direction} from "../../ScrollButton";
+import {levelCount, levelsInViewPortCount} from "../../constants";
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -20,7 +21,7 @@ const reducer = (state, action) => {
             }
             return Object.assign({}, state, {arrows: arrows});
         case 'SCROLL_BUTTON_CLICKED':
-            return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? state.currentLevel + 1 : Math.max(state.currentLevel - 1, 0)});
+            return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
         default:
             return state
     }

@@ -1,8 +1,13 @@
 import React, {useEffect, useRef} from "react";
 import {Grid} from "./Grid";
 import {useSelector} from "react-redux";
+import {iconDragYDistance, levelsInViewPortCount} from "./constants";
 
 export function ViewPort(props) {
+
+    const additionalStyling = {
+        "height": (iconDragYDistance * levelsInViewPortCount) + "px"
+    };
 
     const ref = useRef(() => React.createRef());
 
@@ -12,7 +17,7 @@ export function ViewPort(props) {
 
 
     return (
-        <div ref={ref} className="viewport">
+        <div ref={ref} className="viewport" style={additionalStyling}>
             <Grid/>
         </div>
     )

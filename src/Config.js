@@ -3,9 +3,14 @@ import {useSelector} from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import {sample} from "./sample";
+import {iconDragYDistance, levelsInViewPortCount} from "./constants";
 
 
 export function Config(props) {
+
+    const additionalStyling = {
+        "height": (iconDragYDistance * levelsInViewPortCount) + "px"
+    };
 
     const id = useSelector(state => state.focusedBoxId);
 
@@ -18,7 +23,7 @@ export function Config(props) {
         let config = getConfig(id);
 
         return (
-            <div className="config">
+            <div className="config" style={additionalStyling}>
                 {
                     Object.entries(config).map(item => {
                         return (
