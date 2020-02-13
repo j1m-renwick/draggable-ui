@@ -9,7 +9,7 @@ function App() {
     return (
         <Provider store={store}>
             <div className="App">
-                <div style={{"display": "flex"}}>
+                <div className="app">
                     <ViewPort boxRef="viewport"/>
                     <Config/>
                 </div>

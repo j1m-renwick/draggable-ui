@@ -19,3 +19,49 @@ code {
 .capitalise {
     text-transform: capitalize;
 }
+
+.app {
+    display: flex
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-image: url(images/icon.png);
+    margin-top: 35px;
+    margin-bottom: 35px;
+    position: absolute
+}
+
+.config {
+    width: 300px;
+    height: 782px;
+    border-style: solid;
+    padding: 10px;
+    margin: 10px;
+}
+
+.grid {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    right: 10px;
+    left: 10px;
+}
+
+.line {
+    border-top: 1px solid darkgrey;
+    width: 100%;
+}
+
+.viewport {
+    width: 782px;
+    height: 782px;
+    border-style: solid;
+    position: relative;
+    padding: 0 10px 10px;
+    margin: 10px;
+    overflow-y: scroll;
+}

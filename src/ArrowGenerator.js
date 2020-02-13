@@ -18,14 +18,12 @@ export function ArrowGenerator(props) {
                         return item.children.map((child, index) => {
                             let arrowTarget = arrows.find(i => i.id === child.childId);
                             if (arrowSource && arrowTarget) {
-                                console.log(arrowSource.x);
-                                console.log(arrowSource.y);
-                                console.log(arrowTarget.x);
-                                console.log(arrowTarget.y);
                                 return <ArrowSvg key={item.id + index}
                                                  start={{x: arrowSource.x + iconCenterDistance, y: arrowSource.y + iconSpacingYMargin + iconCenterDistance}}
                                                  end={{x: arrowTarget.x + iconCenterDistance, y:arrowTarget.y + iconSpacingYMargin}}
                                                  orientation={LineOrientation.VERTICAL}/>
+                            } else {
+                                return <div key={item.id + index}/>;
                             }
                         });
                 }

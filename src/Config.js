@@ -7,14 +7,6 @@ import {sample} from "./sample";
 
 export function Config(props) {
 
-    var styling = {
-        "width": "300px",
-        "height": "782px",
-        "borderStyle": "solid",
-        "padding": "10px",
-        "margin": "10px"
-    };
-
     const id = useSelector(state => state.focusedBoxId);
 
     function getConfig(id) {
@@ -26,7 +18,7 @@ export function Config(props) {
         let config = getConfig(id);
 
         return (
-            <div style={styling}>
+            <div className="config">
                 {
                     Object.entries(config).map(item => {
                         return (
@@ -54,7 +46,7 @@ export function Config(props) {
         )
     } else {
         return (
-            <div style={styling}>NOTHING</div>
+            <div className="config">NOTHING</div>
         )
     }
 }

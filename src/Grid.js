@@ -6,16 +6,9 @@ import {levelCount, levelHeight} from "./constants";
 export function Grid(props) {
 
     return (
-        <div style={{
-            "position": "absolute",
-            "display": "flex",
-            "flexDirection": "column",
-            "width": "auto",
-            "right": "10px",
-            "left": "10px"
-        }}>
+        <div className="grid">
             <ArrowGenerator/>
-            {Array(levelCount).fill().map(() => <HorizontalLine distance={levelHeight}/>)};
+            {Array(levelCount).fill().map((_, index) => <HorizontalLine key={index} distance={levelHeight}/>)};
         </div>
     )
 }
