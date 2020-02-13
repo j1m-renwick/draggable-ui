@@ -9,7 +9,7 @@ function App() {
     return (
         <Provider store={store}>
             <div className="app">
-                <ViewPort boxRef="viewport"/>
+                <ViewPort/>
                 <Config/>
             </div>
         </Provider>

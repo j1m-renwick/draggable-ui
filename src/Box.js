@@ -11,7 +11,7 @@ export function Box(props) {
         "height": iconSize + "px",
         "marginTop": iconSpacingYMargin + "px",
         "marginBottom": iconSpacingYMargin + "px"
-    }
+    };
 
     function select() {
         store.dispatch(boxFocused(props.boxId));
@@ -23,7 +23,7 @@ export function Box(props) {
     }
 
     return (
-        <Draggable grid={[iconDragXDistance, iconDragYDistance]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".viewport" onDrag={onControlledDrag}>
+        <Draggable grid={[iconDragXDistance, iconDragYDistance]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".grid" onDrag={onControlledDrag}>
             <div className="box" style={styling} onClick={() => select()} />
         </Draggable>
     )
