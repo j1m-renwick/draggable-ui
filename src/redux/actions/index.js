@@ -3,6 +3,13 @@ export const boxFocused = id => ({
     id: id
 });
 
+export const boxInitialised = (id, x, y) => ({
+    type: 'BOX_INITIALISED',
+    id: id,
+    newX: x,
+    newY: y
+});
+
 export const boxDragged = (id, x, y) => ({
     type: 'BOX_DRAGGED',
     id: id,

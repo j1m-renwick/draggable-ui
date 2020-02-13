@@ -20,6 +20,12 @@ const reducer = (state, action) => {
                 arrows = state.arrows.concat({id: action.id, x: action.newX, y: action.newY});
             }
             return Object.assign({}, state, {arrows: arrows});
+        case 'BOX_INITIALISED':
+            if (state.arrows.findIndex(item => item.id === action.id) === -1) {
+                return Object.assign({}, state, {arrows: state.arrows.concat({id: action.id, x: action.newX, y: action.newY})});
+            } else {
+                return state;
+            }
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
         default:
