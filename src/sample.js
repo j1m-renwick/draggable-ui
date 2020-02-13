@@ -12,10 +12,10 @@ export const sample = [
                 "childId": "5c6e4997-ab58-442a-be0b-ca91eb18d63b",
                 "linkedAnswer": "Run's house"
             },
-            // {
-            //     "childId": 3,
-            //     "linkedAnswer": "Joe's house"
-            // }
+            {
+                "childId": "01072689-9163-4d3f-987f-7483bb7bfc37",
+                "linkedAnswer": "Joe's house"
+            }
         ]
     },
     {

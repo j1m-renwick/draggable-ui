@@ -1,6 +1,5 @@
 import React from "react";
 import {Level} from "./Level";
-import {ArrowGenerator} from "./ArrowGenerator";
 import {Grid} from "./Grid";
 
 export function ViewPort(props) {

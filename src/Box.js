@@ -9,10 +9,10 @@ export function Box(props) {
         "width": "50px",
         "height": "50px",
         "backgroundSize": "contain",
-        "backgroundImage": 'url(./img.png)',
+        "backgroundImage": 'url(./icon.png)',
         "marginTop": "35px",
-        "marginBottom": "35px"
-
+        "marginBottom": "35px",
+        "position": "absolute"
     };
 
     function select() {
@@ -27,7 +27,7 @@ export function Box(props) {
 
     return (
         <Draggable grid={[50, 122]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".viewport" onDrag={onControlledDrag}>
-            <div onClick={() => select()} style={styling}/>
+            <div style={styling} onClick={() => select()} />
         </Draggable>
     )
 
