@@ -1,3 +1,5 @@
+import {Direction} from "../../ScrollButton";
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'BOX_FOCUSED':
@@ -17,6 +19,8 @@ const reducer = (state, action) => {
                 arrows = state.arrows.concat({id: action.id, x: action.newX, y: action.newY});
             }
             return Object.assign({}, state, {arrows: arrows});
+        case 'SCROLL_BUTTON_CLICKED':
+            return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? state.currentLevel + 1 : Math.max(state.currentLevel - 1, 0)});
         default:
             return state
     }

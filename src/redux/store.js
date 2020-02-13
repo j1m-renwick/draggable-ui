@@ -2,7 +2,9 @@ import {createStore} from "redux";
 import rootReducer from "./reducers/reducer";
 
 export const store = createStore(rootReducer,
-    {arrows: [
+    {
+            currentLevel: 0,
+            arrows: [
         // {
         //     "id": "9890c7a3-033f-4d13-9176-27b72915682a",
         //     x: 20,
@@ -14,4 +16,5 @@ export const store = createStore(rootReducer,
         //         y: 100
         //     }
         ]},
+    // enhancer is for redux dev-tool browser integration
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

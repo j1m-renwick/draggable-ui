@@ -2,13 +2,13 @@ import Draggable from "react-draggable";
 import React from "react";
 import {boxDragged, boxFocused} from "./redux/actions";
 import {store} from "./redux/store"
-import {iconDragXDistance, iconDragYDistance, iconSize, iconSpacingYMargin} from "./constants";
+import {iconDragXDistance, iconDragYDistance, iconDiameter, iconSpacingYMargin} from "./constants";
 
 export function Box(props) {
 
     const styling = {
-        "width": iconSize + "px",
-        "height": iconSize + "px",
+        "width": iconDiameter + "px",
+        "height": iconDiameter + "px",
         "marginTop": iconSpacingYMargin + "px",
         "marginBottom": iconSpacingYMargin + "px"
     };

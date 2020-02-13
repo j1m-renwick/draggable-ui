@@ -9,3 +9,8 @@ export const boxDragged = (id, position) => ({
     newX: position.x,
     newY: position.y
 });
+
+export const scrollButtonClicked = (direction) => ({
+    type: 'SCROLL_BUTTON_CLICKED',
+    scrollDirection: direction
+});

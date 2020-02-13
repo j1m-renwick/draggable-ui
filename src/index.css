@@ -32,7 +32,7 @@ code {
 
 .config {
     width: 300px;
-    height: 782px;
+    height: 846px;
     border-style: solid;
     padding: 10px;
     margin: 10px;
@@ -53,8 +53,10 @@ code {
 }
 
 .viewport {
-    width: 782px;
-    height: 782px;
+    /*should be (50 * n) + (10 + 3) * 2 ...... 10 + 3 is the padding and border width on each side*/
+    width: 676px;
+    /*should be 121 * n*/
+    height: 846px;
     border-style: solid;
     position: relative;
     margin: 10px;
