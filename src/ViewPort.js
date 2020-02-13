@@ -1,6 +1,7 @@
 import React from "react";
 import {Level} from "./Level";
 import {Grid} from "./Grid";
+import {levelCount} from "./constants";
 
 export function ViewPort(props) {
 
@@ -11,19 +12,14 @@ export function ViewPort(props) {
         "position": "relative",
         "padding": "10px",
         "paddingTop": "0px",
-        "margin": "10px"
+        "margin": "10px",
+        "overflowY": "scroll"
     };
 
-    // TODO map the number of lines / steps to a prop number - or
     return (
         <div className={props.boxRef} style={styling}>
             <Grid/>
-            <Level level={0}/>
-            <Level level={1}/>
-            <Level level={2}/>
-            <Level level={3}/>
-            <Level level={4}/>
-            <Level level={5}/>
+            {Array(levelCount).fill().map((_, index) => <Level level={index}/>)}
         </div>
     )
 }

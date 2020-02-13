@@ -1,6 +1,7 @@
 import React from "react";
 import {HorizontalLine} from "./HorizontalLine";
 import {ArrowGenerator} from "./ArrowGenerator";
+import {levelCount, levelHeight} from "./constants";
 
 export function Grid(props) {
 
@@ -14,11 +15,7 @@ export function Grid(props) {
             "left": "10px"
         }}>
             <ArrowGenerator/>
-            {/*TODO generate as many lines as there are steps, and allow y-overflow*/}
-            <HorizontalLine distance="120"/>
-            <HorizontalLine distance="120"/>
-            <HorizontalLine distance="120"/>
-            <HorizontalLine distance="120"/>
+            {Array(levelCount).fill().map(() => <HorizontalLine distance={levelHeight}/>)};
         </div>
     )
 }

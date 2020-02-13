@@ -2,17 +2,19 @@ import React from "react";
 import {sample} from "./sample";
 import {ArrowSvg, LineOrientation} from "react-simple-arrows";
 import {useSelector} from "react-redux";
+import {iconSize, iconSpacingYMargin} from "./constants";
 
 export function ArrowGenerator(props) {
 
     const arrows = useSelector(state => state.arrows);
+
+    const iconCenterDistance = iconSize / 2;
 
     return (
         <>
             {
                 sample.filter(item => item.children !== undefined).map(item => {
                     let arrowSource = arrows.find(i => i.id === item.id);
-                    // console.dir(arrowSource);
                         return item.children.map((child, index) => {
                             let arrowTarget = arrows.find(i => i.id === child.childId);
                             if (arrowSource && arrowTarget) {
@@ -21,8 +23,8 @@ export function ArrowGenerator(props) {
                                 console.log(arrowTarget.x);
                                 console.log(arrowTarget.y);
                                 return <ArrowSvg key={item.id + index}
-                                                 start={{x: arrowSource.x + 25, y: arrowSource.y + 35 + 25}}
-                                                 end={{x: arrowTarget.x + 25, y:arrowTarget.y + 35}}
+                                                 start={{x: arrowSource.x + iconCenterDistance, y: arrowSource.y + iconSpacingYMargin + iconCenterDistance}}
+                                                 end={{x: arrowTarget.x + iconCenterDistance, y:arrowTarget.y + iconSpacingYMargin}}
                                                  orientation={LineOrientation.VERTICAL}/>
                             }
                         });
