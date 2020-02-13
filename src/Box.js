@@ -6,7 +6,7 @@ import {iconDragXDistance, iconDragYDistance, iconDiameter, iconSpacingYMargin} 
 
 export function Box(props) {
 
-    useEffect(() => {store.dispatch(boxDragged(props.boxId, props.x, props.y))}, []);
+    useEffect(() => {store.dispatch(boxDragged(props.boxId, props.x, props.y))});
 
     const additionalStyling = {
         "width": iconDiameter + "px",
