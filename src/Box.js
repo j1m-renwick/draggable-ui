@@ -1,10 +1,12 @@
 import Draggable from "react-draggable";
-import React from "react";
+import React, {useEffect} from "react";
 import {boxDragged, boxFocused} from "./redux/actions";
 import {store} from "./redux/store"
 import {iconDragXDistance, iconDragYDistance, iconDiameter, iconSpacingYMargin} from "./constants";
 
 export function Box(props) {
+
+    useEffect(() => {store.dispatch(boxDragged(props.boxId, props.x, props.y))}, []);
 
     const additionalStyling = {
         "width": iconDiameter + "px",
@@ -19,7 +21,7 @@ export function Box(props) {
 
     // update position of box in redux
     function onControlledDrag(e, position) {
-        store.dispatch(boxDragged(props.boxId, position));
+        store.dispatch(boxDragged(props.boxId, position.x, position.y));
     }
 
     return (

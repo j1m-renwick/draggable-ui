@@ -3,11 +3,11 @@ export const boxFocused = id => ({
     id: id
 });
 
-export const boxDragged = (id, position) => ({
+export const boxDragged = (id, x, y) => ({
     type: 'BOX_DRAGGED',
     id: id,
-    newX: position.x,
-    newY: position.y
+    newX: x,
+    newY: y
 });
 
 export const scrollButtonClicked = (direction) => ({
