@@ -37,3 +37,8 @@ export const scrollButtonClicked = (direction) => ({
     type: 'SCROLL_BUTTON_CLICKED',
     scrollDirection: direction
 });
+
+export const saveStateLoadingInitiated = (data) => ({
+    type: 'SAVE_STATE_LOADING_INITIATED',
+    savedData: data
+});

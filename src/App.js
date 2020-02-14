@@ -6,6 +6,7 @@ import {ScrollButton} from "./ScrollButton";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {CreationButton} from "./CreationButton";
+import {LoadButton} from "./LoadButton";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             <ScrollButton direction="UP">Up</ScrollButton>
             <ScrollButton direction="DOWN">Down</ScrollButton>
             <CreationButton>CREATE!</CreationButton>
+            <LoadButton>Load box data to store</LoadButton>
             <div className="app">
                 <ViewPort/>
                 <Config/>

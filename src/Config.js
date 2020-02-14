@@ -1,10 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import {sample} from "./sample";
 import {iconDragYDistance, levelsInViewPortCount} from "./config/constants";
-import uuid from 'uuid/v4'
 import {InputField} from "./InputField";
 import {boxConfigUpdated} from "./redux/actions";
 import {store} from "./redux/store";
@@ -20,17 +17,12 @@ export function Config(props) {
     const boxes = useSelector(state => state.boxes);
 
     function getConfig(id) {
-        let foundItem = boxes.find(item => item.id === id);
-        if (foundItem) {
-            return foundItem.config;
-        } else {
-            return sample.find(item => item.id === id).config
-        }
+        return boxes.find(item => item.id === id).config;
     }
 
     function fieldChangeCallback(text, e) {
         console.log(id + ": changing " + text + " to " + e.target.value);
-        store.dispatch(boxConfigUpdated(id, text, e.target.value))
+        store.dispatch(boxConfigUpdated(id, text, e.target.value));
     }
 
 
@@ -39,7 +31,7 @@ export function Config(props) {
         let config = getConfig(id);
 
         return (
-            <div className="config" style={additionalStyling}>
+            <div key={id} className="config" style={additionalStyling}>
                 {
                     Object.entries(config).map(item => {
                         return (
@@ -48,12 +40,12 @@ export function Config(props) {
                                 {
                                     Array.isArray(item[1]) ?
                                     item[1].map((it, index) => (
-                                        <InputGroup key={uuid.v4()} className="mb-3">
+                                        <InputGroup key={item[0] + index} className="mb-3">
                                             <InputField id={index} for={item[0] + ":" + index} defaultValue={it} cb={fieldChangeCallback}/>
                                             {/*<FormControl key={index} defaultValue={it}/>*/}
                                         </InputGroup>
                                     )) :
-                                    <InputGroup key={item[1]} className="mb-3">
+                                    <InputGroup key={item[0]} className="mb-3">
                                         <InputField id={item[0]} for={item[0]} defaultValue={item[1]} cb={fieldChangeCallback}/>
                                         {/*<FormControl key={item[0]} defaultValue={item[1]}/>*/}
                                     </InputGroup>
