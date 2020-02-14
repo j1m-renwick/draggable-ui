@@ -13,9 +13,15 @@ export function Config(props) {
     };
 
     const id = useSelector(state => state.focusedBoxId);
+    const boxes = useSelector(state => state.boxes);
 
     function getConfig(id) {
-        return sample.find(item => item.id === id).config;
+        let sampleItem = sample.find(item => item.id === id);
+        if (sampleItem) {
+            return sampleItem.config;
+        } else {
+            return boxes.find(item => item.id === id).config
+        }
     }
 
     if(id) {

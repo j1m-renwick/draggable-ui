@@ -10,6 +10,15 @@ export const boxInitialised = (id, x, y) => ({
     newY: y
 });
 
+export const boxCreated = (id, level, x, y, config) => ({
+    type: 'BOX_CREATED',
+    id: id,
+    level: level,
+    newX: x,
+    newY: y,
+    config: config
+});
+
 export const boxDragged = (id, x, y) => ({
     type: 'BOX_DRAGGED',
     id: id,
