@@ -42,12 +42,10 @@ export function Config(props) {
                                     item[1].map((it, index) => (
                                         <InputGroup key={item[0] + index} className="mb-3">
                                             <InputField id={index} for={item[0] + ":" + index} defaultValue={it} cb={fieldChangeCallback}/>
-                                            {/*<FormControl key={index} defaultValue={it}/>*/}
                                         </InputGroup>
                                     )) :
                                     <InputGroup key={item[0]} className="mb-3">
                                         <InputField id={item[0]} for={item[0]} defaultValue={item[1]} cb={fieldChangeCallback}/>
-                                        {/*<FormControl key={item[0]} defaultValue={item[1]}/>*/}
                                     </InputGroup>
                                 }
                             </div>

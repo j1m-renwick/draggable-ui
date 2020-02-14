@@ -8,25 +8,25 @@ const reducer = (state, action) => {
         case 'BOX_FOCUSED':
             return Object.assign({}, state, {focusedBoxId: action.id});
         case 'BOX_DRAGGED':
-            index = state.arrows.findIndex(item => item.id === action.id);
-            let newArrow = {id: action.id, x: action.newX, y: action.newY};
-            let arrows;
+            index = state.locations.findIndex(item => item.id === action.id);
+            let newBoxLocation = {id: action.id, x: action.newX, y: action.newY};
+            let boxLocations;
             if (index !== -1) {
-                arrows = [...state.arrows];
-                arrows[index] = newArrow;
+                boxLocations = [...state.locations];
+                boxLocations[index] = newBoxLocation;
             } else {
-                arrows = state.arrows.concat(newArrow);
+                boxLocations = state.locations.concat(newBoxLocation);
             }
-            return Object.assign({}, state, {arrows: arrows});
+            return Object.assign({}, state, {locations: boxLocations});
         case 'BOX_INITIALISED':
-            if (state.arrows.findIndex(item => item.id === action.id) === -1) {
-                return Object.assign({}, state, {arrows: state.arrows.concat({id: action.id, x: action.newX, y: action.newY})});
+            if (state.locations.findIndex(item => item.id === action.id) === -1) {
+                return Object.assign({}, state, {locations: state.locations.concat([{id: action.id, x: action.newX, y: action.newY}])});
             } else {
                 return state;
             }
         case 'BOX_CREATED':
             return Object.assign({}, state, {
-                arrows: state.arrows.concat({id: action.id, x: action.newX, y: action.newY}),
+                locations: state.locations.concat([{id: action.id, x: action.newX, y: action.newY}]),
                 boxes: state.boxes.concat({id: action.id, level: action.level, x: action.newX, y: action.newY, config: action.config})
                 });
         case 'SCROLL_BUTTON_CLICKED':

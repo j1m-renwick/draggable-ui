@@ -5,19 +5,19 @@ import {iconDiameter, iconSpacingYMargin} from "./config/constants";
 
 export function ArrowGenerator(props) {
 
-    const arrows = useSelector(state => state.arrows);
+    const boxLocations = useSelector(state => state.locations);
     const boxes = useSelector(state => state.boxes);
 
     const iconRadius = iconDiameter / 2;
 
-    if (arrows.length !== 0) {
+    if (boxLocations.length !== 0) {
         return (
             <>
                 {
                     boxes.filter(item => item.children !== undefined).map((item, index) => {
-                        let arrowSource = arrows.find(i => i.id === item.id);
+                        let arrowSource = boxLocations.find(i => i.id === item.id);
                         return item.children.map((child, index) => {
-                            let arrowTarget = arrows.find(i => i.id === child.childId);
+                            let arrowTarget = boxLocations.find(i => i.id === child.childId);
                             if(arrowSource && arrowTarget) {
                                 return <ArrowSvg key={item.id + index}
                                                  start={{
