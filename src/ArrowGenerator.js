@@ -2,7 +2,7 @@ import React from "react";
 import {sample} from "./sample";
 import {ArrowSvg, LineOrientation} from "react-simple-arrows";
 import {useSelector} from "react-redux";
-import {iconDiameter, iconSpacingYMargin} from "./constants";
+import {iconDiameter, iconSpacingYMargin} from "./config/constants";
 
 export function ArrowGenerator(props) {
 

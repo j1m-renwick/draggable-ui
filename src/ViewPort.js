@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import {Grid} from "./Grid";
 import {useSelector} from "react-redux";
-import {iconDragYDistance, levelsInViewPortCount} from "./constants";
+import {iconDragYDistance, levelsInViewPortCount} from "./config/constants";
 
 export function ViewPort(props) {
 

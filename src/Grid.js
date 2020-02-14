@@ -1,7 +1,7 @@
 import React from "react";
 import {HorizontalLine} from "./HorizontalLine";
 import {ArrowGenerator} from "./ArrowGenerator";
-import {levelCount, levelHeight} from "./constants";
+import {levelCount, levelHeight} from "./config/constants";
 import {Level} from "./Level";
 
 export function Grid(props) {

@@ -19,6 +19,13 @@ export const boxCreated = (id, level, x, y, config) => ({
     config: config
 });
 
+export const boxConfigUpdated = (id, key, value) => ({
+    type: 'BOX_CONFIG_UPDATED',
+    id: id,
+    key: key,
+    value: value
+});
+
 export const boxDragged = (id, x, y) => ({
     type: 'BOX_DRAGGED',
     id: id,

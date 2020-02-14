@@ -3,11 +3,12 @@ import {Button} from "react-bootstrap";
 import {store} from "./redux/store"
 import {boxCreated} from "./redux/actions";
 import uuid from 'uuid/v4'
+import {binaryTypeConfig} from "./config/BoxTypes";
 
 export function CreationButton(props) {
 
     function dispatchCreate() {
-        store.dispatch(boxCreated(uuid.v4(), 4, 500, 500, {}));
+        store.dispatch(boxCreated(uuid.v4(), 4, 500, 500, binaryTypeConfig()));
     }
 
     return (

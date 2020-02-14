@@ -1,6 +1,7 @@
 import {Direction} from "../../ScrollButton";
-import {levelCount, levelsInViewPortCount} from "../../constants";
+import {levelCount, levelsInViewPortCount} from "../../config/constants";
 
+// TODO split reducers and CombineReducers
 const reducer = (state, action) => {
     switch (action.type) {
         case 'BOX_FOCUSED':
@@ -33,6 +34,15 @@ const reducer = (state, action) => {
                 });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
+        case 'BOX_CONFIG_UPDATED':
+            let index = state.boxes.findIndex(item => item.id === action.id);
+            if (index !== -1) {
+                let boxes = [...state.boxes];
+                boxes[action.key] = action.value;
+                return Object.assign({}, state, {boxes: boxes});
+            } else {
+                return state;
+            }
         default:
             return state
     }
