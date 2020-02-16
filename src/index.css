@@ -26,10 +26,19 @@ code {
     display: flex
 }
 
-.box {
+.spiral-icon {
     background-size: contain;
-    background-image: url(images/icon.png);
-    position: absolute;
+    background-image: url('images/spiral-icon.png');
+}
+
+.equals-icon {
+    background-size: contain;
+    background-image: url('images/equals-icon.png');
+}
+
+.pic-icon {
+    background-size: contain;
+    background-image: url('images/pic-icon.png');
 }
 
 .config {
@@ -61,4 +70,13 @@ code {
     margin: 10px;
     padding: 0 10px;
     overflow-y: scroll;
+}
+
+.bar {
+    width: 676px;
+    border-style: solid;
+    position: relative;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
 }

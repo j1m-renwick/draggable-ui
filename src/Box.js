@@ -12,7 +12,8 @@ export function Box(props) {
         "width": iconDiameter + "px",
         "height": iconDiameter + "px",
         "marginTop": iconSpacingYMargin + "px",
-        "marginBottom": iconSpacingYMargin + "px"
+        "marginBottom": iconSpacingYMargin + "px",
+        "position": "absolute"
     };
 
     function select() {
@@ -26,7 +27,7 @@ export function Box(props) {
 
     return (
         <Draggable grid={[iconDragXDistance, iconDragYDistance]} defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} bounds=".grid" onDrag={onControlledDrag}>
-            <div className="box" style={additionalStyling} onClick={() => select()} />
+            <div className="spiral-icon" style={additionalStyling} onClick={() => select()} />
         </Draggable>
     )
 

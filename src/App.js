@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {CreationButton} from "./CreationButton";
 import {LoadButton} from "./LoadButton";
+import {BoxTypeBar} from "./BoxTypeBar";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <ViewPort/>
                 <Config/>
             </div>
+            <BoxTypeBar/>
         </Provider>
     );
 }
