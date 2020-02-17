@@ -8,7 +8,7 @@ import {binaryTypeConfig} from "./config/BoxTypes";
 export function CreationButton(props) {
 
     function dispatchCreate() {
-        store.dispatch(boxCreated(uuid.v4(), 4, 500, 500, binaryTypeConfig()));
+        store.dispatch(boxCreated(uuid.v4(), 4, 0, 0, binaryTypeConfig()));
     }
 
     return (

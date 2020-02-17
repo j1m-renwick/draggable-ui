@@ -17,10 +17,10 @@ function App() {
             <CreationButton>CREATE!</CreationButton>
             <LoadButton>Load box data to store</LoadButton>
             <div className="app">
+                <BoxTypeBar/>
                 <ViewPort/>
                 <Config/>
             </div>
-            <BoxTypeBar/>
         </Provider>
     );
 }

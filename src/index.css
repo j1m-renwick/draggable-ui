@@ -73,8 +73,8 @@ code {
 }
 
 .bar {
-    width: 676px;
     border-style: solid;
+    flex-direction: column;
     position: relative;
     margin: 10px;
     padding: 10px;

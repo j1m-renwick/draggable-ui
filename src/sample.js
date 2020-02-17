@@ -29,7 +29,7 @@ export const sample = [
     },
     {
         "id": "01072689-9163-4d3f-987f-7483bb7bfc37",
-        "level": 2,
+        "level": 1,
         "config": {
             "title": "item three",
             "question": "Hello?",
