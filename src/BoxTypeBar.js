@@ -1,5 +1,6 @@
 import React from "react";
 import {iconDiameter, BoxTypeClasses} from "./config/constants";
+import {Box} from "./Box";
 
 export function BoxTypeBar(props) {
 
@@ -12,7 +13,14 @@ export function BoxTypeBar(props) {
     return (
         <div className="bar">
             {
-                BoxTypeClasses.map(type => <div key={type} style={additionalStyling} className={type}/>)
+                BoxTypeClasses.map(boxType => {
+                    return (
+                        <div>
+                            <div key={boxType} style={additionalStyling} className={boxType}/>
+                            <Box key={boxType + "-draggable"} boxId="12345" type={boxType} style={additionalStyling}/>
+                        </div>
+                    )
+                })
             }
         </div>
     )

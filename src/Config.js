@@ -41,11 +41,11 @@ export function Config(props) {
                                     Array.isArray(item[1]) ?
                                     item[1].map((it, index) => (
                                         <InputGroup key={item[0] + index} className="mb-3">
-                                            <InputField id={index} for={item[0] + ":" + index} defaultValue={it} cb={fieldChangeCallback}/>
+                                            <InputField id={index} for={item[0] + ":" + index} defaultValue={it} callback={fieldChangeCallback}/>
                                         </InputGroup>
                                     )) :
                                     <InputGroup key={item[0]} className="mb-3">
-                                        <InputField id={item[0]} for={item[0]} defaultValue={item[1]} cb={fieldChangeCallback}/>
+                                        <InputField id={item[0]} for={item[0]} defaultValue={item[1]} callback={fieldChangeCallback}/>
                                     </InputGroup>
                                 }
                             </div>
