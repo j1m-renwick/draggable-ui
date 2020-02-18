@@ -13,6 +13,7 @@ export function Config(props) {
         "height": (iconDragYDistance * levelsInViewPortCount) + "px"
     };
 
+    const context = useSelector(state => state.focusContext);
     const id = useSelector(state => state.focusedBoxId);
     const boxes = useSelector(state => state.boxes);
 
@@ -25,8 +26,7 @@ export function Config(props) {
         store.dispatch(boxConfigUpdated(id, text, e.target.value));
     }
 
-
-    if(id) {
+    if(context === "VIEW_PORT" && id) {
 
         let config = getConfig(id);
 

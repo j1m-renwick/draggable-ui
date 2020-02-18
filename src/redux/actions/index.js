@@ -1,5 +1,12 @@
 export const boxFocused = id => ({
     type: 'BOX_FOCUSED',
+    focusContext: "VIEW_PORT",
+    id: id
+});
+
+export const boxTypeFocused = id => ({
+    type: 'BOX_TYPE_FOCUSED',
+    focusContext: "BOX_TYPE_BAR",
     id: id
 });
 

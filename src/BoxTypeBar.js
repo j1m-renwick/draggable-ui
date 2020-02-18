@@ -1,9 +1,7 @@
 import React from "react";
 import {BoxTypeClasses, iconDiameter} from "./config/constants";
 import {store} from "./redux/store";
-import {boxCreated} from "./redux/actions";
-import {binaryTypeConfig} from "./config/BoxTypes";
-import uuid from 'uuid/v4';
+import {boxTypeFocused} from "./redux/actions";
 
 export function BoxTypeBar(props) {
 
@@ -13,14 +11,14 @@ export function BoxTypeBar(props) {
         "marginBottom": "10px"
     };
 
-    function dispatchCreate() {
-        store.dispatch(boxCreated(uuid.v4(), 4, 0, 500, binaryTypeConfig()));
+    function dispatchCreate(key) {
+        store.dispatch(boxTypeFocused(key));
     }
 
     return (
         <div className="bar">
             {
-                Object.entries(BoxTypeClasses).map(entry => <div key={entry[0]} style={additionalStyling} className={entry[0]} onClick={dispatchCreate}/>)
+                Object.entries(BoxTypeClasses).map(entry => <div key={entry[0]} style={additionalStyling} className={entry[0]} tabIndex={0} onClick={() => dispatchCreate(entry[0])}/>)
             }
         </div>
     )

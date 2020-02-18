@@ -6,7 +6,9 @@ const reducer = (state, action) => {
     let index;
     switch (action.type) {
         case 'BOX_FOCUSED':
-            return Object.assign({}, state, {focusedBoxId: action.id});
+            return Object.assign({}, state, {focusedBoxId: action.id, focusContext: action.focusContext});
+        case 'BOX_TYPE_FOCUSED':
+            return Object.assign({}, state, {focusedBoxTypeId: action.id, focusContext: action.focusContext});
         case 'BOX_DRAGGED':
             index = state.locations.findIndex(item => item.id === action.id);
             let newBoxLocation = {id: action.id, x: action.newX, y: action.newY};
