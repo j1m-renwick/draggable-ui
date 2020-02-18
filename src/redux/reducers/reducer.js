@@ -27,7 +27,7 @@ const reducer = (state, action) => {
         case 'BOX_CREATED':
             return Object.assign({}, state, {
                 locations: state.locations.concat([{id: action.id, x: action.newX, y: action.newY}]),
-                boxes: state.boxes.concat({id: action.id, level: action.level, x: action.newX, y: action.newY, config: action.config})
+                boxes: state.boxes.concat({id: action.id, level: action.level, x: action.newX, y: action.newY, type: action.boxType, config: action.config})
                 });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});

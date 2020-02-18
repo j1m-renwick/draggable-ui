@@ -11,7 +11,7 @@ export function Level(props) {
         <>
             {
                 boxes.filter(item => item.level === props.level).map((item, index) =>
-                    <Box key={item.id} type={Object.keys(BoxTypeClasses)[0]} boxId={item.id} x={index * 100} y={props.level * iconDragYDistance}/>
+                    <Box key={item.id} type={item.type} boxId={item.id} x={index * 100} y={props.level * iconDragYDistance}/>
                 )
             }
         </>

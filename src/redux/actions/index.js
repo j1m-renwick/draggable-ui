@@ -17,12 +17,13 @@ export const boxInitialised = (id, x, y) => ({
     newY: y
 });
 
-export const boxCreated = (id, level, x, y, config) => ({
+export const boxCreated = (id, level, x, y, boxType, config) => ({
     type: 'BOX_CREATED',
     id: id,
     level: level,
     newX: x,
     newY: y,
+    boxType: boxType,
     config: config
 });
 
