@@ -22,6 +22,10 @@ code {
     text-transform: capitalize;
 }
 
+.italicise {
+    font-style: italic;
+}
+
 .app {
     display: flex
 }
