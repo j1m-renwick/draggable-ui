@@ -26,6 +26,10 @@ code {
     font-style: italic;
 }
 
+.focused {
+    outline: 3px solid cornflowerblue;
+}
+
 .app {
     display: flex
 }
