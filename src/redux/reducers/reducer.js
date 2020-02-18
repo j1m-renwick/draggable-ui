@@ -18,7 +18,7 @@ const reducer = (state, action) => {
                 boxLocations = state.locations.concat(newBoxLocation);
             }
             return Object.assign({}, state, {locations: boxLocations});
-        case 'BOX_INITIALISED':
+        case 'BOX_LOCATION_SET':
             if (state.locations.findIndex(item => item.id === action.id) === -1) {
                 return Object.assign({}, state, {locations: state.locations.concat([{id: action.id, x: action.newX, y: action.newY}])});
             } else {

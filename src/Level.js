@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {BoxTypeClasses, iconDragYDistance} from "./config/constants";
+import {iconDragYDistance} from "./config/constants";
 import {useSelector} from "react-redux";
 
 export function Level(props) {
