@@ -12,8 +12,6 @@ import {BoxTypeBar} from "./BoxTypeBar";
 function App() {
     return (
         <Provider store={store}>
-            <ScrollButton direction="UP">Up</ScrollButton>
-            <ScrollButton direction="DOWN">Down</ScrollButton>
             <CreationButton>CREATE!</CreationButton>
             <LoadButton>Load box data to store</LoadButton>
             <div className="app">
@@ -21,6 +19,8 @@ function App() {
                 <ViewPort/>
                 <Config/>
             </div>
+            <ScrollButton direction="UP">Up</ScrollButton>
+            <ScrollButton direction="DOWN">Down</ScrollButton>
         </Provider>
     );
 }
