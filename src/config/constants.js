@@ -22,9 +22,25 @@ export const BoxTypeClasses = {
         }
     },
     "equals-icon": {
-        someConfig: "HERE"
+        title: {
+            input: "TEXT"
+        },
+        question: {
+            input: "TEXT"
+        },
+        answer: {
+            input: "TEXT"
+        }
     },
     "pic-icon": {
-        someConfig: "HERE"
+        title: {
+            input: "TEXT"
+        },
+        question: {
+            input: "TEXT"
+        },
+        answer: {
+            input: "IMAGE_UPLOAD_URL"
+        }
     }
 };
