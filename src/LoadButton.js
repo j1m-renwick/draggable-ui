@@ -14,6 +14,7 @@ export function LoadButton(props) {
     }
 
     return (
-        <Button style={{"margin": "10px 0px 0px 10px"}} onClick={loadSampleData}>{props.children}</Button>
+        <></>
+        // <Button style={{"margin": "10px 0px 0px 10px"}} onClick={loadSampleData}>{props.children}</Button>
     )
 }

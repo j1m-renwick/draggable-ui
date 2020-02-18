@@ -1,5 +1,5 @@
 import React from "react";
-import {iconDiameter, BoxTypeClasses} from "./config/constants";
+import {BoxTypeClasses, iconDiameter} from "./config/constants";
 import {store} from "./redux/store";
 import {boxCreated} from "./redux/actions";
 import {binaryTypeConfig} from "./config/BoxTypes";
@@ -20,7 +20,7 @@ export function BoxTypeBar(props) {
     return (
         <div className="bar">
             {
-                BoxTypeClasses.map(boxType => <div key={boxType} style={additionalStyling} className={boxType} onClick={dispatchCreate}/>)
+                Object.entries(BoxTypeClasses).map(entry => <div key={entry[0]} style={additionalStyling} className={entry[0]} onClick={dispatchCreate}/>)
             }
         </div>
     )

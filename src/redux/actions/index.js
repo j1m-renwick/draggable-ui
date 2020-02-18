@@ -38,6 +38,11 @@ export const scrollButtonClicked = (direction) => ({
     scrollDirection: direction
 });
 
+export const viewportScrolled = (level) => ({
+    type: 'VIEWPORT_SCROLLED',
+    newCurrentLevel: level
+});
+
 export const saveStateLoadingInitiated = (data) => ({
     type: 'SAVE_STATE_LOADING_INITIATED',
     savedData: data

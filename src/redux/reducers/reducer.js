@@ -31,6 +31,8 @@ const reducer = (state, action) => {
                 });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
+        case 'VIEWPORT_SCROLLED':
+            return Object.assign({}, state, {currentLevel: action.newCurrentLevel});
         case 'BOX_CONFIG_UPDATED':
             index = state.boxes.findIndex(item => item.id === action.id);
             if (index !== -1) {

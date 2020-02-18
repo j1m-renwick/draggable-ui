@@ -9,4 +9,22 @@ export const iconDragXDistance = iconDiameter;
 export const iconDragYDistance = levelHeight + levelSeparatorWidth;
 export const iconSpacingYMargin = (levelHeight - iconDiameter) / 2;
 
-export const BoxTypeClasses = ["spiral-icon", "equals-icon", "pic-icon"];
+export const BoxTypeClasses = {
+    "spiral-icon": {
+        title: {
+            input: "TEXT"
+        },
+        question: {
+            input: "TEXT"
+        },
+        answers: {
+            input: "TEXT_ARRAY"
+        }
+    },
+    "equals-icon": {
+        someConfig: "HERE"
+    },
+    "pic-icon": {
+        someConfig: "HERE"
+    }
+};
