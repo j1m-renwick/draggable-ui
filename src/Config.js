@@ -14,7 +14,8 @@ export function Config(props) {
     };
 
     const context = useSelector(state => state.focusContext);
-    const id = useSelector(state => state.focusedBoxId);
+    const focusedId = useSelector(state => state.focusedBoxId);
+    const focusBoxType = useSelector(state => state.focusBoxType);
     const boxes = useSelector(state => state.boxes);
 
     function getConfig(id) {
@@ -22,16 +23,15 @@ export function Config(props) {
     }
 
     function fieldChangeCallback(text, e) {
-        console.log(id + ": changing " + text + " to " + e.target.value);
-        store.dispatch(boxConfigUpdated(id, text, e.target.value));
+        store.dispatch(boxConfigUpdated(focusedId, text, e.target.value));
     }
 
-    if(context === "VIEW_PORT" && id) {
+    if(context === "VIEW_PORT" && focusedId) {
 
-        let config = getConfig(id);
+        let config = getConfig(focusedId);
 
         return (
-            <div key={id} className="config" style={additionalStyling}>
+            <div key={focusedId} className="config" style={additionalStyling}>
                 {
                     Object.entries(config).map(item => {
                         return (
@@ -53,7 +53,12 @@ export function Config(props) {
                 }
             </div>
         )
-    } else {
+    } else if (context === "BOX_TYPE_BAR") {
+        return (
+            <div className="config">{focusBoxType}</div>
+        )
+    }
+    else {
         return (
             <div className="config">NOTHING</div>
         )

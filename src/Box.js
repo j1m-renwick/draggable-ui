@@ -1,6 +1,6 @@
 import Draggable from "react-draggable";
 import React, {useEffect} from "react";
-import {boxDragged, boxFocused, boxInitialised} from "./redux/actions";
+import {boxDragged, boxInViewPortFocused, boxInitialised} from "./redux/actions";
 import {store} from "./redux/store"
 import {iconDragXDistance, iconDragYDistance, iconDiameter, iconSpacingYMargin} from "./config/constants";
 
@@ -17,7 +17,7 @@ export function Box(props) {
     };
 
     function select() {
-        store.dispatch(boxFocused(props.boxId));
+        store.dispatch(boxInViewPortFocused(props.boxId, props.type));
     }
 
     // update position of box in redux

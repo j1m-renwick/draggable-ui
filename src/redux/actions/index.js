@@ -1,14 +1,14 @@
-export const boxFocused = id => ({
-    type: 'BOX_FOCUSED',
-    focusContext: "VIEW_PORT",
-    id: id
-});
+export const boxInViewPortFocused = (id, type) => boxFocused(id, type, "VIEW_PORT");
+export const boxTypeFocused = (id, type) => boxFocused(id, type, "BOX_TYPE_BAR");
 
-export const boxTypeFocused = id => ({
-    type: 'BOX_TYPE_FOCUSED',
-    focusContext: "BOX_TYPE_BAR",
-    id: id
-});
+const boxFocused = (id, type, focusContext) => {
+    return {
+        type: 'BOX_FOCUSED',
+        focusContext: focusContext,
+        id: id,
+        focusBoxType: type
+    }
+};
 
 export const boxInitialised = (id, x, y) => ({
     type: 'BOX_INITIALISED',

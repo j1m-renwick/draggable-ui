@@ -12,7 +12,7 @@ export function BoxTypeBar(props) {
     };
 
     function dispatchCreate(key) {
-        store.dispatch(boxTypeFocused(key));
+        store.dispatch(boxTypeFocused(key, key));
     }
 
     return (
