@@ -26,7 +26,7 @@ export const sample = [
         "config": {
             "title": "item two",
             "question": "Enough now?",
-            "answers": ["Yes", "No"]
+            "answer": "Yes"
         }
     },
     {

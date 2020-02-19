@@ -6,7 +6,7 @@ import Badge from "react-bootstrap/Badge";
 export function BoxTypeBarConfigData(props) {
 
     return (
-        <div>
+        <>
             <h4 className="italicise">{props.focusBoxType}</h4>
             <br/>
             {
@@ -18,6 +18,6 @@ export function BoxTypeBarConfigData(props) {
                     )
                 })
             }
-        </div>
+        </>
     )
 }

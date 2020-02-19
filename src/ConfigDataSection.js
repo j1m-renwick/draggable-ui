@@ -18,7 +18,7 @@ export function ConfigDataSection(props) {
     function renderConfigData() {
        switch(context) {
            case "VIEW_PORT":
-               return <ViewPortConfigData focusedId={focusedId}/>;
+               return <ViewPortConfigData focusedId={focusedId} focusBoxType={focusBoxType}/>;
            case "BOX_TYPE_BAR":
                return <BoxTypeBarConfigData focusBoxType={focusBoxType}/>;
            default:
