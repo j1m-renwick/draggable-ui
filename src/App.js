@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {ViewPort} from "./ViewPort";
-import {Config} from "./Config";
+import {ConfigDataSection} from "./ConfigDataSection";
 import {ScrollButton} from "./ScrollButton";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
@@ -17,7 +17,7 @@ function App() {
             <div className="app">
                 <BoxTypeBar/>
                 <ViewPort/>
-                <Config/>
+                <ConfigDataSection/>
             </div>
             <ScrollButton direction="UP">Up</ScrollButton>
             <ScrollButton direction="DOWN">Down</ScrollButton>
