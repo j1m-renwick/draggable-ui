@@ -49,6 +49,8 @@ const reducer = (state, action) => {
             }
         case 'SAVE_STATE_LOADING_INITIATED':
             return Object.assign({}, state, {boxes: action.savedData});
+        case 'LINKAGE_STARTED':
+            return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});
         default:
             return state
     }

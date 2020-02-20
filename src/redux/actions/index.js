@@ -52,3 +52,8 @@ export const saveStateLoadingInitiated = (data) => ({
     type: 'SAVE_STATE_LOADING_INITIATED',
     savedData: data
 });
+
+export const linkageStarted = (reference) => ({
+    type: 'LINKAGE_STARTED',
+    reference: reference
+});

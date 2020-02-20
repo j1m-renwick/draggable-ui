@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {store} from "./redux/store";
+import {linkageStarted} from "./redux/actions";
 
 export function Linker(props) {
 
@@ -7,7 +9,7 @@ export function Linker(props) {
     const [linked, setLinked] = useState(false);
 
     // NOTE: can use https://codepen.io/sosuke/pen/Pjoqqp to generate appropriate filter criteria
-    const genericStyling = {
+    const inactiveStyling = {
         "filter": "invert(60%) sepia(40%) saturate(321%) hue-rotate(155deg) brightness(95%) contrast(88%)",
         "paddingRight": "5px"
     };
@@ -22,15 +24,20 @@ export function Linker(props) {
         "paddingRight": "5px"
     };
 
+    function onLinkClicked() {
+        store.dispatch(linkageStarted(props.for));
+        setLinked(!linked)
+    }
+
     if (props.inactive) {
 
         return (
-            <img alt="kasda" src={image} style={genericStyling}/>
+            <img alt="link-icon" src={image} style={inactiveStyling}/>
         )
     } else {
         return (
-            <img alt="kasda" src={image} style={linked ? linkedStyling : unlinkedStyling}
-                 onClick={() => setLinked(!linked)}/>
+            <img alt="link-icon" src={image} style={linked ? linkedStyling : unlinkedStyling}
+                 onClick={onLinkClicked}/>
         )
     }
 

@@ -10,15 +10,16 @@ export function ViewPort(props) {
 
     const LEVEL_SNAP_CUTOFF_PERCENTAGE = 0.5;
 
-    const additionalStyling = {
-        "height": (iconDragYDistance * levelsInViewPortCount) + "px"
-    };
-
     const ref = useRef(() => React.createRef());
-
     const currentLevel = useSelector(state => state.currentLevel);
+    const linkageInProgress = useSelector(state => state.linkageInProgress);
 
     useEffect(() => {ref.current.scrollTop = currentLevel * iconDragYDistance}, [currentLevel]);
+
+    const additionalStyling = {
+        "height": (iconDragYDistance * levelsInViewPortCount) + "px",
+        "backgroundColor": linkageInProgress? "pink": "initial"
+    };
 
     // snap to the correct level based on scroll location
     function onScrollFinished() {
