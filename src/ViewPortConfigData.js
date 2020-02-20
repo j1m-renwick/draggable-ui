@@ -5,6 +5,7 @@ import {InputField} from "./InputField";
 import {boxConfigUpdated} from "./redux/actions";
 import {store} from "./redux/store";
 import {BoxTypeClasses} from "./config/constants";
+import {Linker} from "./Linker";
 
 export function ViewPortConfigData(props) {
 
@@ -24,7 +25,8 @@ export function ViewPortConfigData(props) {
                 return (
                     <div key={title}>
                         <label className="capitalise" htmlFor={title}>{title}</label>
-                        <InputGroup key={title} className="mb-3">
+                        <InputGroup key={title} className="mb-3" style={{"alignItems": "center"}}>
+                            {item.linkable === true ? <Linker/> : <></>}
                             <InputField id={title} for={title} defaultValue={item.value}
                                         callback={fieldChangeCallback}/>
                         </InputGroup>
@@ -36,7 +38,8 @@ export function ViewPortConfigData(props) {
                         <label className="capitalise" htmlFor={title}>{title}</label>
                         {
                             Object.entries(item).map((it, index) => (
-                                <InputGroup key={it[0]} className="mb-3">
+                                <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
+                                    {it[1].linkable === true ? <Linker/> : <></>}
                                     <InputField id={it[0]} for={title + ":" + it[0]} defaultValue={it[1].value}
                                                 callback={fieldChangeCallback}/>
                                 </InputGroup>

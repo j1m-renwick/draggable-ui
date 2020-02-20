@@ -18,7 +18,8 @@ export const BoxTypeClasses = {
             input: "TEXT"
         },
         answers: {
-            input: "TEXT_ARRAY"
+            input: "TEXT_ARRAY",
+            linkable: true
         }
     },
     "equals-icon": {
@@ -29,7 +30,8 @@ export const BoxTypeClasses = {
             input: "TEXT"
         },
         answer: {
-            input: "TEXT"
+            input: "TEXT",
+            linkable: true
         }
     },
     "pic-icon": {
@@ -40,7 +42,8 @@ export const BoxTypeClasses = {
             input: "TEXT"
         },
         answer: {
-            input: "IMAGE_UPLOAD_URL"
+            input: "IMAGE_UPLOAD_URL",
+            linkable: true
         }
     }
 };

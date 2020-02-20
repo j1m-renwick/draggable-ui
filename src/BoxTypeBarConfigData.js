@@ -1,9 +1,14 @@
 import React from "react";
 import {BoxTypeClasses} from "./config/constants";
 import Badge from "react-bootstrap/Badge";
+import {Linker} from "./Linker";
 
 
 export function BoxTypeBarConfigData(props) {
+
+    const flexContainerStyling = {
+        "display": "flex", "justifyContent": "space-between", "marginBottom": "5px"
+    };
 
     return (
         <>
@@ -12,9 +17,13 @@ export function BoxTypeBarConfigData(props) {
             {
                 Object.entries(BoxTypeClasses[props.focusBoxType]).map(item => {
                     return (
-                        <h6 key={item[0]} className="capitalise">{item[0]}
-                            <Badge style={{"float": "right"}} variant="secondary">{item[1]["input"]}</Badge>
-                        </h6>
+                        <div style={flexContainerStyling}>
+                            <div style={{"display": "flex"}}>
+                            {item[1].linkable === true ? <Linker inactive={true}/> : <></>}
+                                <h6 key={item[0]} style={{"marginBottom": "initial"}} className="capitalise">{item[0]}</h6>
+                            </div>
+                                <Badge variant="secondary">{item[1]["input"]}</Badge>
+                        </div>
                     )
                 })
             }
