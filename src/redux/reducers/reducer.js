@@ -26,8 +26,8 @@ const reducer = (state, action) => {
             }
         case 'BOX_CREATED':
             return Object.assign({}, state, {
-                locations: state.locations.concat([{id: action.id, x: action.newX, y: action.newY}]),
-                boxes: state.boxes.concat({id: action.id, level: action.level, x: action.newX, y: action.newY, type: action.boxType, config: action.config})
+                locations: state.locations.concat([{id: action.json.id, x: action.newX, y: action.newY}]),
+                boxes: state.boxes.concat(action.json)
                 });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
@@ -39,9 +39,9 @@ const reducer = (state, action) => {
                 let boxes = [...state.boxes];
                 let keyParts = action.key.split(":");
                 if (keyParts.length === 1) {
-                    boxes[index].config[keyParts[0]] = action.value;
+                    boxes[index].config[keyParts[0]].value = action.value;
                 } else {
-                    boxes[index].config[keyParts[0]][keyParts[1]] = action.value;
+                    boxes[index].config[keyParts[0]][keyParts[1]].value = action.value;
                 }
                 return Object.assign({}, state, {boxes: boxes});
             } else {

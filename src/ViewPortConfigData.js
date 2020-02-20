@@ -6,7 +6,6 @@ import {boxConfigUpdated} from "./redux/actions";
 import {store} from "./redux/store";
 import {BoxTypeClasses} from "./config/constants";
 
-
 export function ViewPortConfigData(props) {
 
     const boxes = useSelector(state => state.boxes);
@@ -15,8 +14,8 @@ export function ViewPortConfigData(props) {
         return id !== undefined ? boxes.find(item => item.id === id).config : [];
     }
 
-    function fieldChangeCallback(text, e) {
-        store.dispatch(boxConfigUpdated(props.focusedId, text, e.target.value));
+    function fieldChangeCallback(reference, e) {
+        store.dispatch(boxConfigUpdated(props.focusedId, reference, e.target.value));
     }
 
     function renderConfigField(title, type, item) {
@@ -26,7 +25,7 @@ export function ViewPortConfigData(props) {
                     <div key={title}>
                         <label className="capitalise" htmlFor={title}>{title}</label>
                         <InputGroup key={title} className="mb-3">
-                            <InputField id={title} for={title} defaultValue={item}
+                            <InputField id={title} for={title} defaultValue={item.value}
                                         callback={fieldChangeCallback}/>
                         </InputGroup>
                     </div>
@@ -36,9 +35,9 @@ export function ViewPortConfigData(props) {
                     <div key={title}>
                         <label className="capitalise" htmlFor={title}>{title}</label>
                         {
-                            item.map((it, index) => (
-                                <InputGroup key={title + index} className="mb-3">
-                                    <InputField id={index} for={title + ":" + index} defaultValue={it}
+                            Object.entries(item).map((it, index) => (
+                                <InputGroup key={it[0]} className="mb-3">
+                                    <InputField id={it[0]} for={title + ":" + it[0]} defaultValue={it[1].value}
                                                 callback={fieldChangeCallback}/>
                                 </InputGroup>
                             ))
@@ -47,7 +46,7 @@ export function ViewPortConfigData(props) {
                 );
             default:
                 console.error("Warning: Attribute '" + title + "' has an unrecognised render type of '" + type + "' and will not be rendered.");
-                return <></>
+                return <div key={title}/>
         }
     }
 

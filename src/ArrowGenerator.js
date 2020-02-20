@@ -14,12 +14,12 @@ export function ArrowGenerator(props) {
         return (
             <>
                 {
-                    boxes.filter(item => item.children !== undefined).map((item, index) => {
+                    boxes.filter(item => item.children.length > 0).map((item, index) => {
                         let arrowSource = boxLocations.find(i => i.id === item.id);
                         return item.children.map((child, index) => {
-                            let arrowTarget = boxLocations.find(i => i.id === child.childId);
+                            let arrowTarget = boxLocations.find(i => i.id === child);
                             if(arrowSource && arrowTarget) {
-                                return <ArrowSvg key={item.id + index}
+                                return <ArrowSvg key={child}
                                                  start={{
                                                      x: arrowSource.x + iconRadius,
                                                      y: arrowSource.y + iconSpacingYMargin + iconRadius

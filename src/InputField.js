@@ -6,6 +6,6 @@ export function InputField(props) {
 
 
     return (
-        <FormControl onChange={(e) => props.callback(props.for, e)} key={props.id} defaultValue={props.defaultValue}/>
+        <FormControl onChange={(e) => props.callback(props.for, e)} defaultValue={props.defaultValue}/>
     )
 }

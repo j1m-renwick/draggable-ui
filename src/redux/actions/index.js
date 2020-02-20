@@ -17,14 +17,11 @@ export const boxLocationSet = (id, x, y) => ({
     newY: y
 });
 
-export const boxCreated = (id, level, x, y, boxType, config) => ({
+export const boxCreated = (x, y, json) => ({
     type: 'BOX_CREATED',
-    id: id,
-    level: level,
     newX: x,
     newY: y,
-    boxType: boxType,
-    config: config
+    json: json
 });
 
 export const boxConfigUpdated = (id, key, value) => ({

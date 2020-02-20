@@ -2,8 +2,7 @@ import React from 'react';
 import {Button} from "react-bootstrap";
 import {store} from "./redux/store"
 import {boxCreated} from "./redux/actions";
-import uuid from 'uuid/v4'
-import {binaryTypeConfig} from "./config/BoxTypes";
+import {newBoxData} from "./config/BoxTypes";
 import {iconDiameter} from "./config/constants";
 import {useSelector} from "react-redux";
 
@@ -20,7 +19,7 @@ export function CreationButton(props) {
     function dispatchCreate() {
         if (focusContext === "BOX_TYPE_BAR") {
             // TODO remove config and map directly from box type
-            store.dispatch(boxCreated(uuid.v4(), 4, 0, 0, focusBoxType, binaryTypeConfig()));
+            store.dispatch(boxCreated(0, 0, newBoxData(focusBoxType, 4)));
         }
     }
 
