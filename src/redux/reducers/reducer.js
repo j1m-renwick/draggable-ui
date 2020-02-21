@@ -10,21 +10,21 @@ const reducer = (state, action) => {
     switch (action.type) {
         case 'BOX_FOCUSED':
             if (state.linkageInProgress) {
-                if(action.focusContext === "VIEW_PORT") {
+                if(action.focusContext === "VIEW_PORT" && (state.focusedBoxId !== action.id)) {
                     let boxes = [...state.boxes];
                     // find box that was previously focused
                     let previouslyFocusedBox = boxes.find(item => item.id === state.focusedBoxId);
                     // find config link item for the previously focused item
                     let previouslyFocusedLinkItem = get(previouslyFocusedBox.config, state.linkageReference);
-                    // set the config link item to the newly focused box id
-                    previouslyFocusedLinkItem.linkedId = action.id;
                     // add/set the previously focused box children to the new box focus id
-                    let foundIndex = previouslyFocusedBox.children.findIndex(item => item === action.id);
-                    if (foundIndex !== -1) {
-                        previouslyFocusedBox.children[foundIndex] = action.id;
+                    let index = previouslyFocusedBox.children.findIndex(item => item === previouslyFocusedLinkItem.linkedId);
+                    if (index !== -1) {
+                        previouslyFocusedBox.children[index] = action.id;
                     } else {
                         previouslyFocusedBox.children.push(action.id)
                     }
+                    // set the config link item to the newly focused box id
+                    previouslyFocusedLinkItem.linkedId = action.id;
                     // set state and dispatch 'linkage finished' action
                     return loop(Object.assign({}, state, {
                         boxes: boxes
@@ -32,7 +32,7 @@ const reducer = (state, action) => {
                 } else {
                     return state;
                 }
-            }else {
+            } else {
                 return Object.assign({}, state, {
                     focusedBoxId: action.id,
                     focusContext: action.focusContext,
