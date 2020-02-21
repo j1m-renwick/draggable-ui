@@ -1,5 +1,9 @@
-import {createStore} from "redux";
+import {compose, createStore} from "redux";
 import rootReducer from "./reducers/reducer";
+import {install} from "redux-loop";
+
+// enhancer is for redux dev-tool browser integration
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(rootReducer,
     {
@@ -8,5 +12,4 @@ export const store = createStore(rootReducer,
             linkageReference: null,
             boxes: [],
             locations: []},
-    // enhancer is for redux dev-tool browser integration
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    composeEnhancers(install()));

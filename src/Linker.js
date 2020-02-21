@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import {store} from "./redux/store";
 import {linkageStarted} from "./redux/actions";
+import {useSelector} from "react-redux";
 
 export function Linker(props) {
 
     const image = require("./images/link_16x16.png");
 
-    const [linked, setLinked] = useState(false);
+    // const [linked, setLinked] = useState(false);
+    const linkedBox = useSelector(state => state.boxes.find(item => item.id === props.boxId).config[props.reference.split(":")[0]][props.reference.split(":")[1]].linkedId);
 
     // NOTE: can use https://codepen.io/sosuke/pen/Pjoqqp to generate appropriate filter criteria
     const inactiveStyling = {
@@ -25,8 +27,9 @@ export function Linker(props) {
     };
 
     function onLinkClicked() {
-        store.dispatch(linkageStarted(props.for));
-        setLinked(!linked)
+        console.log(linkedBox);
+        store.dispatch(linkageStarted(props.reference));
+        // setLinked(!linked)
     }
 
     if (props.inactive) {
@@ -36,7 +39,7 @@ export function Linker(props) {
         )
     } else {
         return (
-            <img alt="link-icon" src={image} style={linked ? linkedStyling : unlinkedStyling}
+            <img alt="link-icon" src={image} style={linkedBox !== null ? linkedStyling : unlinkedStyling}
                  onClick={onLinkClicked}/>
         )
     }

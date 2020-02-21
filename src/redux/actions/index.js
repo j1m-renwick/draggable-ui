@@ -57,3 +57,7 @@ export const linkageStarted = (reference) => ({
     type: 'LINKAGE_STARTED',
     reference: reference
 });
+
+export const linkageFinished = () => ({
+    type: 'LINKAGE_FINISHED'
+});

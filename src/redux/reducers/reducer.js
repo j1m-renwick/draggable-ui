@@ -1,12 +1,50 @@
 import {Direction} from "../../ScrollButton";
 import {levelCount, levelsInViewPortCount} from "../../config/constants";
+import {Cmd, loop} from "redux-loop";
+import {linkageFinished} from "../actions";
 
 // TODO split reducers and CombineReducers
 const reducer = (state, action) => {
     let index;
     switch (action.type) {
         case 'BOX_FOCUSED':
-            return Object.assign({}, state, {focusedBoxId: action.id, focusContext: action.focusContext, focusBoxType: action.focusBoxType});
+            if (state.linkageInProgress) {
+                if(action.focusContext === "VIEW_PORT") {
+                    let boxes = [...state.boxes];
+                    // find box that was previously focused
+                    let previouslyFocusedBox = boxes.find(item => item.id === state.focusedBoxId);
+                    // find config link item for the previously focused item - the reference might belong to
+                    // an array item, so split the reference if necessary
+                    let referenceArray = state.linkageReference.split(":");
+                    let previouslyFocusedLinkItem;
+                    if (referenceArray.length === 1) {
+                        previouslyFocusedLinkItem = previouslyFocusedBox.config[state.linkageReference];
+                    } else {
+                        previouslyFocusedLinkItem = previouslyFocusedBox.config[referenceArray[0]][referenceArray[1]];
+                    }
+                    // set the config link item to the newly focused box id
+                    previouslyFocusedLinkItem.linkedId = action.focusedBoxId;
+                    // add/set the previously focused box children to the new box focus id
+                    let foundIndex = previouslyFocusedBox.children.findIndex(item => item === action.focusedBoxId);
+                    if (foundIndex !== -1) {
+                        previouslyFocusedBox.children[foundIndex] = action.focusedBoxId;
+                    } else {
+                        previouslyFocusedBox.children.push(action.focusedBoxId)
+                    }
+                    // set state and dispatch 'linkage finished' action
+                    return loop(Object.assign({}, state, {
+                        boxes: boxes
+                    }), Cmd.action(linkageFinished()));
+                } else {
+                    return state;
+                }
+            }else {
+                return Object.assign({}, state, {
+                    focusedBoxId: action.id,
+                    focusContext: action.focusContext,
+                    focusBoxType: action.focusBoxType
+                });
+            }
         case 'BOX_DRAGGED':
             index = state.locations.findIndex(item => item.id === action.id);
             let newBoxLocation = {id: action.id, x: action.newX, y: action.newY};
@@ -51,6 +89,8 @@ const reducer = (state, action) => {
             return Object.assign({}, state, {boxes: action.savedData});
         case 'LINKAGE_STARTED':
             return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});
+        case 'LINKAGE_FINISHED':
+            return Object.assign({}, state, {linkageInProgress: false, linkageReference: null});
         default:
             return state
     }
