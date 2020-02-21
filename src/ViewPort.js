@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from "react";
 import {Grid} from "./Grid";
 import {useSelector} from "react-redux";
 import {iconDragYDistance, levelsInViewPortCount} from "./config/constants";
-import debounce from 'lodash.debounce';
+import {debounce} from 'lodash';
 import {store} from "./redux/store";
 import {viewportScrolled} from "./redux/actions";
 

@@ -39,8 +39,8 @@ export function ViewPortConfigData(props) {
                         {
                             Object.entries(item).map((it, index) => (
                                 <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
-                                    {it[1].linkable === true ? <Linker boxId={props.focusedId} reference={title + ":" + it[0]}/> : <></>}
-                                    <InputField id={it[0]} for={title + ":" + it[0]} defaultValue={it[1].value}
+                                    {it[1].linkable === true ? <Linker boxId={props.focusedId} reference={title + "." + it[0]}/> : <></>}
+                                    <InputField id={it[0]} for={title + "." + it[0]} defaultValue={it[1].value}
                                                 callback={fieldChangeCallback}/>
                                 </InputGroup>
                             ))

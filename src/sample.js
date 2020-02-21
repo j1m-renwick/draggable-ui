@@ -14,16 +14,16 @@ export const sample = [
                 "061f17f8-ef1d-4e6e-845e-9c06a432ca20": {
                     value: "Run's house",
                     linkable: true,
-                    linkedId: "5c6e4997-ab58-442a-be0b-ca91eb18d63b"
+                    linkedId: null
                 },
                 "03dc2743-a9c0-4c80-90f3-901c5cea0765": {
                     value: "Joe's house",
                     linkable: true,
-                    linkedId: "01072689-9163-4d3f-987f-7483bb7bfc37"
+                    linkedId: null
                 }
             }
         },
-        children: ["5c6e4997-ab58-442a-be0b-ca91eb18d63b", "01072689-9163-4d3f-987f-7483bb7bfc37"]
+        children: []
     },
     {
         id: "5c6e4997-ab58-442a-be0b-ca91eb18d63b",

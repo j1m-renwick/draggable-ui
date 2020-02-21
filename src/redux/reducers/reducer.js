@@ -2,6 +2,7 @@ import {Direction} from "../../ScrollButton";
 import {levelCount, levelsInViewPortCount} from "../../config/constants";
 import {Cmd, loop} from "redux-loop";
 import {linkageFinished} from "../actions";
+import {get} from "lodash";
 
 // TODO split reducers and CombineReducers
 const reducer = (state, action) => {
@@ -13,23 +14,16 @@ const reducer = (state, action) => {
                     let boxes = [...state.boxes];
                     // find box that was previously focused
                     let previouslyFocusedBox = boxes.find(item => item.id === state.focusedBoxId);
-                    // find config link item for the previously focused item - the reference might belong to
-                    // an array item, so split the reference if necessary
-                    let referenceArray = state.linkageReference.split(":");
-                    let previouslyFocusedLinkItem;
-                    if (referenceArray.length === 1) {
-                        previouslyFocusedLinkItem = previouslyFocusedBox.config[state.linkageReference];
-                    } else {
-                        previouslyFocusedLinkItem = previouslyFocusedBox.config[referenceArray[0]][referenceArray[1]];
-                    }
+                    // find config link item for the previously focused item
+                    let previouslyFocusedLinkItem = get(previouslyFocusedBox.config, state.linkageReference);
                     // set the config link item to the newly focused box id
-                    previouslyFocusedLinkItem.linkedId = action.focusedBoxId;
+                    previouslyFocusedLinkItem.linkedId = action.id;
                     // add/set the previously focused box children to the new box focus id
-                    let foundIndex = previouslyFocusedBox.children.findIndex(item => item === action.focusedBoxId);
+                    let foundIndex = previouslyFocusedBox.children.findIndex(item => item === action.id);
                     if (foundIndex !== -1) {
-                        previouslyFocusedBox.children[foundIndex] = action.focusedBoxId;
+                        previouslyFocusedBox.children[foundIndex] = action.id;
                     } else {
-                        previouslyFocusedBox.children.push(action.focusedBoxId)
+                        previouslyFocusedBox.children.push(action.id)
                     }
                     // set state and dispatch 'linkage finished' action
                     return loop(Object.assign({}, state, {
@@ -75,12 +69,7 @@ const reducer = (state, action) => {
             index = state.boxes.findIndex(item => item.id === action.id);
             if (index !== -1) {
                 let boxes = [...state.boxes];
-                let keyParts = action.key.split(":");
-                if (keyParts.length === 1) {
-                    boxes[index].config[keyParts[0]].value = action.value;
-                } else {
-                    boxes[index].config[keyParts[0]][keyParts[1]].value = action.value;
-                }
+                get(boxes[index].config, action.key).value = action.value;
                 return Object.assign({}, state, {boxes: boxes});
             } else {
                 return state;
