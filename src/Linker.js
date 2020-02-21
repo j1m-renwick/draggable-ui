@@ -9,7 +9,7 @@ export function Linker(props) {
     const image = require("./images/link_16x16.png");
 
     // TODO refactor?
-    const componentLinkedId = useSelector(state => get(state.boxes.find(item => item.id === props.boxId).config, props.reference).linkedId);
+    const componentLinkedId = useSelector(state => props.inactive ? null : get(state.boxes.find(item => item.id === props.boxId).config, props.reference).linkedId);
 
     // NOTE: can use https://codepen.io/sosuke/pen/Pjoqqp to generate appropriate filter criteria
     const inactiveStyling = {
@@ -27,7 +27,8 @@ export function Linker(props) {
         "paddingRight": "5px"
     };
 
-    function onLinkClicked() {
+    function onLinkClicked(e) {
+        e.preventDefault();
         store.dispatch(linkageStarted(props.reference));
     }
 
@@ -38,8 +39,8 @@ export function Linker(props) {
         )
     } else {
         return (
-            <img alt="link-icon" src={image} style={componentLinkedId !== null ? linkedStyling : unlinkedStyling}
-                 onClick={onLinkClicked}/>
+            <img alt="link-icon" src={image} style={componentLinkedId === null || componentLinkedId === undefined ? unlinkedStyling : linkedStyling}
+                 onContextMenu={onLinkClicked}/>
         )
     }
 

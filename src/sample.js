@@ -13,13 +13,11 @@ export const sample = [
             answers: {
                 "061f17f8-ef1d-4e6e-845e-9c06a432ca20": {
                     value: "Run's house",
-                    linkable: true,
-                    linkedId: null
+                    linkable: true
                 },
                 "03dc2743-a9c0-4c80-90f3-901c5cea0765": {
                     value: "Joe's house",
-                    linkable: true,
-                    linkedId: null
+                    linkable: true
                 }
             }
         },
