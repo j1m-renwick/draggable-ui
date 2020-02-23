@@ -10,10 +10,6 @@ export function Box(props) {
     const [x, setX] = useState(props.x);
     const [y, setY] = useState(props.y);
 
-    useEffect(() => {
-        store.dispatch(boxLocationSet(props.boxId, x, y))
-    });
-
     const boxLocations = useSelector(state => state.locations);
 
     const additionalStyling = {

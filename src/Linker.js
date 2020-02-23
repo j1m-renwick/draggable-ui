@@ -3,12 +3,11 @@ import {store} from "./redux/store";
 import {linkageStarted, linkHoverFinished, linkHoverStarted} from "./redux/actions";
 import {useSelector} from "react-redux";
 import {get} from "lodash";
+import image from './images/link_16x16.png';
 
 export function Linker(props) {
 
-    const image = require("./images/link_16x16.png");
-
-    // TODO refactor?
+    // TODO refactor? (refactor all selectors to be more efficient)
     const componentLinkedId = useSelector(state => props.inactive ? null : get(state.boxes.find(item => item.id === props.boxId).config, props.reference).linkedId);
 
     // NOTE: can use https://codepen.io/sosuke/pen/Pjoqqp to generate appropriate filter criteria

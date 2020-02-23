@@ -39,6 +39,7 @@ const reducer = (state, action) => {
                     focusBoxType: action.focusBoxType
                 });
             }
+        // TODO SHOULD CHANGE LEVEL VALUE IN BOXES AS WELL!!!!  or, level should just be calculated at saving time
         case 'BOX_DRAGGED':
             index = state.locations.findIndex(item => item.id === action.id);
             let newBoxLocation = {id: action.id, x: action.newX, y: action.newY};
@@ -47,7 +48,7 @@ const reducer = (state, action) => {
                 boxLocations = [...state.locations];
                 boxLocations[index] = newBoxLocation;
             } else {
-                boxLocations = state.locations.concat(newBoxLocation);
+                boxLocations = state.locations.concat([newBoxLocation]);
             }
             return Object.assign({}, state, {locations: boxLocations});
         case 'BOX_LOCATION_SET':
@@ -58,8 +59,7 @@ const reducer = (state, action) => {
             }
         case 'BOX_CREATED':
             return Object.assign({}, state, {
-                locations: state.locations.concat([{id: action.json.id, x: action.newX, y: action.newY}]),
-                boxes: state.boxes.concat(action.json)
+                boxes: state.boxes.concat([action.json])
                 });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});

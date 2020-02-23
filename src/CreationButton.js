@@ -15,11 +15,11 @@ export function CreationButton(props) {
 
     const focusBoxType = useSelector(state => state.focusBoxType);
     const focusContext = useSelector(state => state.focusContext);
+    const currentLevel = useSelector(state => state.currentLevel);
 
     function dispatchCreate() {
         if (focusContext === "BOX_TYPE_BAR") {
-            // TODO remove config and map directly from box type
-            store.dispatch(boxCreated(0, 0, newBoxData(focusBoxType, 4)));
+            store.dispatch(boxCreated(newBoxData(focusBoxType,  currentLevel)));
         }
     }
 

@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {Button} from "react-bootstrap";
 import {store} from "./redux/store"
 import {saveStateLoadingInitiated} from "./redux/actions";
 import {sample} from "./sample";
