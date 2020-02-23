@@ -1,6 +1,6 @@
 import React from "react";
 import {store} from "./redux/store";
-import {linkageStarted} from "./redux/actions";
+import {linkageStarted, linkHoverFinished, linkHoverStarted} from "./redux/actions";
 import {useSelector} from "react-redux";
 import {get} from "lodash";
 
@@ -32,6 +32,14 @@ export function Linker(props) {
         store.dispatch(linkageStarted(props.reference));
     }
 
+    function onMouseHoveredOver() {
+        store.dispatch(linkHoverStarted(props.linkedId));
+    }
+
+    function onMouseHoveredOff() {
+        store.dispatch(linkHoverFinished(props.linkedId));
+    }
+
     if (props.inactive) {
 
         return (
@@ -40,7 +48,7 @@ export function Linker(props) {
     } else {
         return (
             <img alt="link-icon" src={image} style={componentLinkedId === null || componentLinkedId === undefined ? unlinkedStyling : linkedStyling}
-                 onContextMenu={onLinkClicked}/>
+                 onContextMenu={onLinkClicked} onMouseOver={onMouseHoveredOver} onMouseOut={onMouseHoveredOff}/>
         )
     }
 

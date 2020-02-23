@@ -10,6 +10,7 @@ export const store = createStore(rootReducer,
             currentLevel: 0,
             linkageInProgress: false,
             linkageReference: null,
+            hoveredLinkId: null,
             boxes: [],
             locations: []},
     composeEnhancers(install()));

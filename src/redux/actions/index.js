@@ -61,3 +61,13 @@ export const linkageStarted = (reference) => ({
 export const linkageFinished = () => ({
     type: 'LINKAGE_FINISHED'
 });
+
+export const linkHoverStarted = (linkedId) => ({
+    type: 'LINK_HOVER_STARTED',
+    linkedId: linkedId
+});
+
+export const linkHoverFinished = (linkedId) => ({
+    type: 'LINK_HOVER_FINISHED',
+    linkedId: linkedId
+});

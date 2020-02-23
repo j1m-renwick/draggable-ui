@@ -80,6 +80,10 @@ const reducer = (state, action) => {
             return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});
         case 'LINKAGE_FINISHED':
             return Object.assign({}, state, {linkageInProgress: false, linkageReference: null});
+        case 'LINK_HOVER_STARTED':
+            return Object.assign({}, state, {hoveredLinkId: action.linkedId});
+        case 'LINK_HOVER_FINISHED':
+            return Object.assign({}, state, {hoveredLinkId: null});
         default:
             return state
     }
