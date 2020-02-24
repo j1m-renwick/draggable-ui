@@ -18,7 +18,7 @@ export function ViewPort(props) {
 
     const additionalStyling = {
         "height": (iconDragYDistance * levelsInViewPortCount) + "px",
-        "backgroundColor": linkageInProgress? "pink": "initial"
+        "backgroundColor": linkageInProgress? "pink": "white"
     };
 
     // snap to the correct level based on scroll location

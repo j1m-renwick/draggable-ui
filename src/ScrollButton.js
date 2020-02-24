@@ -12,7 +12,7 @@ export function ScrollButton(props) {
     }
 
     return (
-        <Button style={{"margin": "10px 0px 0px 10px"}} onClick={dispatchScrollEvent}>{props.children}</Button>
+        <Button style={{"margin": "10px 0px 0px 10px"}} variant="dark" onClick={dispatchScrollEvent}>{props.children}</Button>
     )
 }
 
