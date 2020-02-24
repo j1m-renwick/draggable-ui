@@ -8,6 +8,7 @@ export function ArrowGenerator(props) {
     const boxLocations = useSelector(state => state.locations);
     const boxes = useSelector(state => state.boxes);
     const hoveredLinkId = useSelector(state => state.hoveredLinkId);
+    const focusedBoxId = useSelector(state => state.focusedBoxId);
 
     const iconRadius = iconDiameter / 2;
 
@@ -29,7 +30,7 @@ export function ArrowGenerator(props) {
                                                      x: arrowTarget.x + iconRadius,
                                                      y: arrowTarget.y + iconSpacingYMargin
                                                  }}
-                                                 orientation={LineOrientation.VERTICAL} highlight={child === hoveredLinkId}/>
+                                                 orientation={LineOrientation.VERTICAL} highlight={child === hoveredLinkId && item.id === focusedBoxId}/>
                             } else {
                                 return <></>
                             }
