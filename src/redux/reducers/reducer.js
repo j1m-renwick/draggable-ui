@@ -17,7 +17,7 @@ const reducer = (state, action) => {
                     // find config link item for the previously focused item
                     let previouslyFocusedLinkItem = get(previouslyFocusedBox.config, state.linkageReference);
                     // add/set the previously focused box children to the new box focus id
-                    let index = previouslyFocusedBox.children.findIndex(item => item === previouslyFocusedLinkItem.linkedId);
+                    index = previouslyFocusedBox.children.findIndex(item => item === previouslyFocusedLinkItem.linkedId);
                     if (index !== -1) {
                         previouslyFocusedBox.children[index] = action.id;
                     } else {

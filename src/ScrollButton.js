@@ -7,13 +7,21 @@ export function ScrollButton(props) {
 
     const direction = props.direction || Direction.DOWN;
 
+    const additionalStyling = {
+        "width": "20px",
+        "height": "20px"
+    };
+
     function dispatchScrollEvent() {
         store.dispatch(scrollButtonClicked(direction));
     }
 
     return (
-        <Button style={{"margin": "10px 0px 0px 10px"}} variant="dark" onClick={dispatchScrollEvent}>{props.children}</Button>
-    )
+        <Button style={{marginLeft: "10px"}} variant="dark" onClick={dispatchScrollEvent}>
+            <img alt="CREATE!" style={additionalStyling} src={require(props.direction === Direction.UP ? "./images/up-arrow.png" : "./images/down-arrow.png")}/>
+        </Button>
+
+)
 }
 
 export const Direction = {

@@ -3,6 +3,7 @@ import {store} from "./redux/store"
 import {saveStateLoadingInitiated} from "./redux/actions";
 import {sample} from "./sample";
 
+// TODO replace this with proper loading
 export function LoadButton(props) {
 
     useEffect(() => {
