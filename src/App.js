@@ -13,7 +13,7 @@ import {NavBar} from "./NavBar";
 
 function App() {
     return (
-        <div style={{backgroundImage: "url(" + backgroundImage + ")", height: "100vh"}}>
+        <div style={{backgroundImage: "url(" + backgroundImage + ")", minHeight: "100vh"}}>
             <Provider store={store}>
                 <NavBar/>
                 <div style={{margin: "10px 10px 0px 10px"}}>

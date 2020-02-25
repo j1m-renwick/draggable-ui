@@ -1,7 +1,7 @@
 import {Direction} from "../../ScrollButton";
 import {levelCount, levelsInViewPortCount} from "../../config/constants";
 import {Cmd, loop} from "redux-loop";
-import {linkageFinished} from "../actions";
+import {boxCreated, linkageFinished} from "../actions";
 import {get} from "lodash";
 
 // TODO split reducers and CombineReducers
@@ -59,7 +59,7 @@ const reducer = (state, action) => {
             }
         case 'BOX_CREATED':
             return Object.assign({}, state, {
-                boxes: state.boxes.concat([action.json])
+                boxes: state.boxes.concat([boxCreated(state.focusBoxType,  state.currentLevel)])
                 });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
