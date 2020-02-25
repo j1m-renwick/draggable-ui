@@ -2,6 +2,7 @@ import React from "react";
 import {ArrowSvg, LineOrientation} from "react-simple-arrows";
 import {useSelector} from "react-redux";
 import {iconDiameter, iconSpacingYMargin} from "./config/constants";
+import uuid from 'uuid';
 
 export function ArrowGenerator(props) {
 
@@ -21,7 +22,7 @@ export function ArrowGenerator(props) {
                         return item.children.map((child, index) => {
                             let arrowTarget = boxLocations.find(i => i.id === child);
                             if(arrowSource && arrowTarget) {
-                                return <ArrowSvg key={child}
+                                return <ArrowSvg key={uuid.v4()}
                                                  start={{
                                                      x: arrowSource.x + iconRadius,
                                                      y: arrowSource.y + iconSpacingYMargin + iconRadius
