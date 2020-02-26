@@ -10,13 +10,6 @@ const boxFocused = (id, type, focusContext) => {
     }
 };
 
-export const boxLocationSet = (id, x, y) => ({
-    type: 'BOX_LOCATION_SET',
-    id: id,
-    newX: x,
-    newY: y
-});
-
 export const boxCreated = () => ({
     type: 'BOX_CREATED'
 });

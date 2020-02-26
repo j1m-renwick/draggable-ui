@@ -1,33 +1,47 @@
 import {Direction} from "../../ScrollButton";
-import {levelCount, levelsInViewPortCount} from "../../config/constants";
+import {iconDragYDistance, levelCount, levelsInViewPortCount} from "../../config/constants";
 import {Cmd, loop} from "redux-loop";
-import {boxCreated, linkageFinished} from "../actions";
+import {linkageFinished} from "../actions";
 import {get} from "lodash";
+import {newBoxData} from "../../config/BoxTypes";
 
 // TODO split reducers and CombineReducers
+// TODO review each action and perform only the required amount of array/json copying to ensure new state is picked up
+// BOX_FOCUSED
+// BOX_DRAGGED
+// BOX_CONFIG_UPDATED
+
 const reducer = (state, action) => {
     let index;
+    let boxes;
+    let config;
+    let children;
     switch (action.type) {
         case 'BOX_FOCUSED':
             if (state.linkageInProgress) {
                 if(action.focusContext === "VIEW_PORT" && (state.focusedBoxId !== action.id)) {
-                    let boxes = [...state.boxes];
-                    // find box that was previously focused
-                    let previouslyFocusedBox = boxes.find(item => item.id === state.focusedBoxId);
-                    // find config link item for the previously focused item
-                    let previouslyFocusedLinkItem = get(previouslyFocusedBox.config, state.linkageReference);
+                    // find config link item for the previously focused box
+                    let previouslyFocusedBoxConfig = state.config[state.focusedBoxId];
+                    let previouslyFocusedLinkItem = get(previouslyFocusedBoxConfig, state.linkageReference);
                     // add/set the previously focused box children to the new box focus id
-                    index = previouslyFocusedBox.children.findIndex(item => item === previouslyFocusedLinkItem.linkedId);
+                    let previouslyFocusedBoxChildren = [...state.children[state.focusedBoxId]];
+                    index = previouslyFocusedBoxChildren.findIndex(item => item === previouslyFocusedLinkItem.linkedId);
                     if (index !== -1) {
-                        previouslyFocusedBox.children[index] = action.id;
+                        previouslyFocusedBoxChildren[index] = action.id;
                     } else {
-                        previouslyFocusedBox.children.push(action.id)
+                        previouslyFocusedBoxChildren.push(action.id)
                     }
+                    let newChildrenState = {...state.children};
+                    newChildrenState[state.focusedBoxId] = previouslyFocusedBoxChildren;
                     // set the config link item to the newly focused box id
-                    previouslyFocusedLinkItem.linkedId = action.id;
+
+                    let newConfigState = {...state.config};
+                    get(newConfigState[state.focusedBoxId], state.linkageReference).linkedId = action.id;
+
                     // set state and dispatch 'linkage finished' action
                     return loop(Object.assign({}, state, {
-                        boxes: boxes
+                        config: newConfigState,
+                        children: newChildrenState
                     }), Cmd.action(linkageFinished()));
                 } else {
                     return state;
@@ -36,46 +50,50 @@ const reducer = (state, action) => {
                 return Object.assign({}, state, {
                     focusedBoxId: action.id,
                     focusContext: action.focusContext,
+                    // TODO remove focusBoxType from state
                     focusBoxType: action.focusBoxType
                 });
             }
-        // TODO SHOULD CHANGE LEVEL VALUE IN BOXES AS WELL!!!!  or, level should just be calculated at saving time
         case 'BOX_DRAGGED':
-            index = state.locations.findIndex(item => item.id === action.id);
-            let newBoxLocation = {id: action.id, x: action.newX, y: action.newY};
-            let boxLocations;
-            if (index !== -1) {
-                boxLocations = [...state.locations];
-                boxLocations[index] = newBoxLocation;
-            } else {
-                boxLocations = state.locations.concat([newBoxLocation]);
-            }
-            return Object.assign({}, state, {locations: boxLocations});
-        case 'BOX_LOCATION_SET':
-            if (state.locations.findIndex(item => item.id === action.id) === -1) {
-                return Object.assign({}, state, {locations: state.locations.concat([{id: action.id, x: action.newX, y: action.newY}])});
-            } else {
-                return state;
-            }
+            boxes = {...state.boxes};
+            let boxToUpdate = boxes[action.id];
+            boxToUpdate.x = action.newX;
+            boxToUpdate.y = action.newY;
+            return Object.assign({}, state, {boxes: boxes});
         case 'BOX_CREATED':
+            boxes = {...state.boxes};
+            children = {...state.children};
+            config = {...state.config};
+
+            // set all new box data
+            let creationData = newBoxData(state.focusBoxType);
+            config[creationData.id] = creationData.config;
+            children[creationData.id] = creationData.children;
+            boxes[creationData.id] = creationData.box;
+
+            // get all boxes on the current level and set the new box x and y values accordingly
+            let newY = state.currentLevel * iconDragYDistance;
+            let newX = Object.values(boxes).filter(item => item.y === newY).reduce((max, next) => Math.max(max, next.x), -100);
+
+            creationData.box.x = newX + 100;
+            creationData.box.y = newY;
+
+            boxes[creationData.id] = creationData.box;
             return Object.assign({}, state, {
-                boxes: state.boxes.concat([boxCreated(state.focusBoxType,  state.currentLevel)])
-                });
+                boxes: boxes,
+                children: children,
+                config: config
+            });
         case 'SCROLL_BUTTON_CLICKED':
             return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
         case 'VIEWPORT_SCROLLED':
             return Object.assign({}, state, {currentLevel: action.newCurrentLevel});
         case 'BOX_CONFIG_UPDATED':
-            index = state.boxes.findIndex(item => item.id === action.id);
-            if (index !== -1) {
-                let boxes = [...state.boxes];
-                get(boxes[index].config, action.key).value = action.value;
-                return Object.assign({}, state, {boxes: boxes});
-            } else {
-                return state;
-            }
+            config = {...state.config};
+            get(config[action.id], action.key).value = action.value;
+            return Object.assign({}, state, {config: config});
         case 'SAVE_STATE_LOADING_INITIATED':
-            return Object.assign({}, state, {boxes: action.savedData});
+            return Object.assign({}, state, {boxes: action.savedData.boxes, children: action.savedData.children, config: action.savedData.config});
         case 'LINKAGE_STARTED':
             return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});
         case 'LINKAGE_FINISHED':

@@ -93,7 +93,7 @@
 //     focusBoxType: 'equals-icon'
 // };
 
-var example = {
+var draft = {
     currentLevel: 0,
     linkageInProgress: false,
     linkageReference: null,

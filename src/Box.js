@@ -1,8 +1,8 @@
 import Draggable from "react-draggable";
-import React, {useEffect, useState} from "react";
-import {boxDragged, boxInViewPortFocused, boxLocationSet} from "./redux/actions";
+import React, {useState} from "react";
+import {boxDragged, boxInViewPortFocused} from "./redux/actions";
 import {store} from "./redux/store"
-import {iconDragXDistance, iconDragYDistance, iconDiameter, iconSpacingYMargin} from "./config/constants";
+import {iconDiameter, iconDragXDistance, iconDragYDistance, iconSpacingYMargin} from "./config/constants";
 import {useSelector} from "react-redux";
 
 export function Box(props) {
@@ -10,7 +10,7 @@ export function Box(props) {
     const [x, setX] = useState(props.x);
     const [y, setY] = useState(props.y);
 
-    const boxLocations = useSelector(state => state.locations);
+    const boxes = useSelector(state => state.boxes);
 
     const additionalStyling = {
         "width": iconDiameter + "px",
@@ -31,7 +31,7 @@ export function Box(props) {
 
     // check that the stopped position doesn't overlap with any other boxes - if it does, reset it back to the original position before the drag started.
     function onStopDrag(e, position) {
-        let overlappingItem = boxLocations.filter(item => item.id !== props.boxId).find(item => item.x === position.lastX && item.y === position.lastY);
+        let overlappingItem = Object.values(boxes).filter(item => item.id !== props.boxId).find(item => item.x === position.lastX && item.y === position.lastY);
         if(overlappingItem !== undefined) {
             setX(null);
             setX(x);
@@ -45,7 +45,7 @@ export function Box(props) {
 
     return (
         <Draggable grid={[iconDragXDistance, iconDragYDistance]}
-                   defaultPosition={{x: props.x ? props.x : 0, y: props.y ? props.y : 0}} position={{x: x, y: y}}
+                   defaultPosition={{x: props.x, y: props.y}} position={{x: x, y: y}}
                    bounds=".grid" onDrag={onControlledDrag} onStop={onStopDrag}>
             <div className={props.type} style={additionalStyling} onClick={() => select()}/>
         </Draggable>

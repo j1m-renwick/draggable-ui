@@ -9,10 +9,10 @@ import {Linker} from "./Linker";
 
 export function ViewPortConfigData(props) {
 
-    const boxes = useSelector(state => state.boxes);
+    const config = useSelector(state => state.config);
 
     function getConfig(id) {
-        return id !== undefined ? boxes.find(item => item.id === id).config : [];
+        return id !== undefined ? config[id] : {};
     }
 
     function fieldChangeCallback(reference, e) {

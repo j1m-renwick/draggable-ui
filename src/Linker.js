@@ -8,7 +8,7 @@ import image from './images/link_16x16.png';
 export function Linker(props) {
 
     // TODO refactor? (refactor all selectors to be more efficient)
-    const componentLinkedId = useSelector(state => props.inactive ? null : get(state.boxes.find(item => item.id === props.boxId).config, props.reference).linkedId);
+    const componentLinkedId = useSelector(state => props.inactive ? null : get(state.config[props.boxId], props.reference).linkedId);
 
     // NOTE: can use https://codepen.io/sosuke/pen/Pjoqqp to generate appropriate filter criteria
     const inactiveStyling = {

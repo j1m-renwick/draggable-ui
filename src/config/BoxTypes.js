@@ -1,14 +1,20 @@
 import uuid from "uuid";
 
-export const newBoxData = (boxType, level) => {
-    let json = {
-        id: uuid.v4(),
+export const newBoxData = (boxType) => {
+    let boxId = uuid.v4();
+    let newBox = {
+        id: boxId,
         type: boxType,
-        level: level,
-        children: []
     };
-    json["config"] = getConfigData(boxType);
-    return json;
+    let newConfig = getConfigData(boxType);
+
+    let toReturn = {};
+    toReturn.id = boxId;
+    toReturn.box = newBox;
+    toReturn.config = newConfig;
+    toReturn.children = [];
+
+    return toReturn;
 };
 
 const getConfigData = (boxType) => {

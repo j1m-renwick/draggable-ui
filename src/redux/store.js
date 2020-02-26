@@ -1,6 +1,7 @@
-import {compose, createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import rootReducer from "./reducers/reducer";
 import {install} from "redux-loop";
+// import {def} from 'redux-immutable-state-invariant';
 
 // enhancer is for redux dev-tool browser integration
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -11,6 +12,11 @@ export const store = createStore(rootReducer,
             linkageInProgress: false,
             linkageReference: null,
             hoveredLinkId: null,
-            boxes: [],
-            locations: []},
-    composeEnhancers(install()));
+            boxes: {},
+            config: {},
+            children: {}
+            },
+    composeEnhancers(
+
+        applyMiddleware(require('redux-immutable-state-invariant').default()),
+        install()));
