@@ -2,15 +2,10 @@ import {Direction} from "../../ScrollButton";
 import {iconDragYDistance, levelCount, levelsInViewPortCount} from "../../config/constants";
 import {Cmd, loop} from "redux-loop";
 import {linkageFinished} from "../actions";
-import {get} from "lodash";
+import {get, cloneDeep} from "lodash";
 import {newBoxData} from "../../config/BoxTypes";
 
 // TODO split reducers and CombineReducers
-// TODO review each action and perform only the required amount of array/json copying to ensure new state is picked up
-// BOX_FOCUSED
-// BOX_DRAGGED
-// BOX_CONFIG_UPDATED
-
 const reducer = (state, action) => {
     let index;
     let boxes;
@@ -33,10 +28,11 @@ const reducer = (state, action) => {
                     }
                     let newChildrenState = {...state.children};
                     newChildrenState[state.focusedBoxId] = previouslyFocusedBoxChildren;
-                    // set the config link item to the newly focused box id
 
-                    let newConfigState = {...state.config};
-                    get(newConfigState[state.focusedBoxId], state.linkageReference).linkedId = action.id;
+                    // set the config link item to the newly focused box id
+                    let newConfigState = cloneDeep(state.config);
+                    let configItemToUpdate = get(newConfigState[state.focusedBoxId], state.linkageReference);
+                    configItemToUpdate.linkedId = action.id;
 
                     // set state and dispatch 'linkage finished' action
                     return loop(Object.assign({}, state, {
@@ -56,9 +52,10 @@ const reducer = (state, action) => {
             }
         case 'BOX_DRAGGED':
             boxes = {...state.boxes};
-            let boxToUpdate = boxes[action.id];
+            let boxToUpdate = cloneDeep(boxes[action.id]);
             boxToUpdate.x = action.newX;
             boxToUpdate.y = action.newY;
+            boxes[action.id] = boxToUpdate;
             return Object.assign({}, state, {boxes: boxes});
         case 'BOX_CREATED':
             boxes = {...state.boxes};
@@ -73,6 +70,7 @@ const reducer = (state, action) => {
 
             // get all boxes on the current level and set the new box x and y values accordingly
             let newY = state.currentLevel * iconDragYDistance;
+            // TODO remove hardcoding
             let newX = Object.values(boxes).filter(item => item.y === newY).reduce((max, next) => Math.max(max, next.x), -100);
 
             creationData.box.x = newX + 100;
@@ -89,7 +87,7 @@ const reducer = (state, action) => {
         case 'VIEWPORT_SCROLLED':
             return Object.assign({}, state, {currentLevel: action.newCurrentLevel});
         case 'BOX_CONFIG_UPDATED':
-            config = {...state.config};
+            config = cloneDeep(state.config);
             get(config[action.id], action.key).value = action.value;
             return Object.assign({}, state, {config: config});
         case 'SAVE_STATE_LOADING_INITIATED':
