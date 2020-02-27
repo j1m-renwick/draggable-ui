@@ -8,6 +8,7 @@ export const levelSeparatorWidth = 1;
 export const iconDragXDistance = iconDiameter;
 export const iconDragYDistance = levelHeight + levelSeparatorWidth;
 export const iconSpacingYMargin = (levelHeight - iconDiameter) / 2;
+export const defaultIconSpacingXMargin = 100;
 
 export const BoxTypeClasses = {
     "spiral-icon": {

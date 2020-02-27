@@ -1,5 +1,5 @@
 import {Direction} from "../../ScrollButton";
-import {iconDragYDistance, levelCount, levelsInViewPortCount} from "../../config/constants";
+import {defaultIconSpacingXMargin, iconDragYDistance, levelCount, levelsInViewPortCount} from "../../config/constants";
 import {Cmd, loop} from "redux-loop";
 import {linkageFinished} from "../actions";
 import {get, cloneDeep} from "lodash";
@@ -70,10 +70,9 @@ const reducer = (state, action) => {
 
             // get all boxes on the current level and set the new box x and y values accordingly
             let newY = state.currentLevel * iconDragYDistance;
-            // TODO remove hardcoding
-            let newX = Object.values(boxes).filter(item => item.y === newY).reduce((max, next) => Math.max(max, next.x), -100);
+            let newX = Object.values(boxes).filter(item => item.y === newY).reduce((max, next) => Math.max(max, next.x), -defaultIconSpacingXMargin);
 
-            creationData.box.x = newX + 100;
+            creationData.box.x = newX + defaultIconSpacingXMargin;
             creationData.box.y = newY;
 
             boxes[creationData.id] = creationData.box;

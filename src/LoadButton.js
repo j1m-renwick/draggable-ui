@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {store} from "./redux/store"
 import {saveStateLoadingInitiated} from "./redux/actions";
 import {sample} from "./sample";
-import {iconDragYDistance} from "./config/constants";
+import {defaultIconSpacingXMargin, iconDragYDistance} from "./config/constants";
 
 export function LoadButton(props) {
 
@@ -41,14 +41,12 @@ export function LoadButton(props) {
             2) get all children and push them to map array
             3) repeat until no more children
         */
-        // TODO check this sort works as intended
-        let sortedSample = sample.sort((i1, i2) => i1.level < i2.level ? -1: 0);
-        sortedSample.forEach(item => mapChildren(item));
+        sample.sort((i1, i2) => i1.level < i2.level ? -1: 0).forEach(item => mapChildren(item));
 
         // iterate through the new box order on each level and initialize them with the correct x / y coordinates
         for (const [key, value] of Object.entries(map)) {
             [...value].forEach((item, index) => {
-                populateState(sample.find(samp => samp.id === item), index * 100, key * iconDragYDistance)
+                populateState(sample.find(samp => samp.id === item), index * defaultIconSpacingXMargin, key * iconDragYDistance)
             })
         }
 

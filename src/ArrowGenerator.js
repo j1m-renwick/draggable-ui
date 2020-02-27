@@ -1,5 +1,5 @@
 import React from "react";
-import {ArrowSvg, LineOrientation} from "react-simple-arrows";
+import {ArrowSvg, LineOrientation} from "@j1m/rsa";
 import {useSelector} from "react-redux";
 import {iconDiameter, iconSpacingYMargin} from "./config/constants";
 import uuid from 'uuid';
@@ -38,7 +38,7 @@ export function ArrowGenerator(props) {
                             } else {
                                 return <></>
                             }
-                        });
+                        })
                     })
                 }
             </>
