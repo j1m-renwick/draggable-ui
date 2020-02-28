@@ -16,7 +16,7 @@ export function LoadNavLink() {
             let reader = new FileReader();
 
             reader.onload = (file => e => {
-                store.dispatch(loadingInitiated(transform(JSON.parse(e.target.result))));
+                store.dispatch(loadingInitiated(transformToState(JSON.parse(e.target.result))));
             })(fileToRead);
 
             reader.readAsText(fileToRead);
@@ -26,7 +26,7 @@ export function LoadNavLink() {
         }
     }
 
-    function transform(file) {
+    function transformToState(file) {
         let boxes = {};
         let children = {};
         let config = {};
