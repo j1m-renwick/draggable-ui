@@ -1,6 +1,7 @@
 import {Nav, Navbar} from "react-bootstrap";
 import React, {useState} from "react";
 import {TemplateDetailsAccordion} from "./TemplateDetailsAccordion";
+import {LoadNavLink} from "./LoadNavLink";
 
 export function NavBar() {
 
@@ -13,7 +14,7 @@ export function NavBar() {
                 <Nav>
                     <Nav.Link onSelect={() => setShowDetails(!showDetails)} href="#details">Details...</Nav.Link>
                     <Nav.Link href="#save">Save</Nav.Link>
-                    <Nav.Link href="#load">Load</Nav.Link>
+                    <LoadNavLink/>
                 </Nav>
             </Navbar>
             <TemplateDetailsAccordion showDetails={showDetails}/>

@@ -38,8 +38,8 @@ export const viewportScrolled = (level) => ({
     newCurrentLevel: level
 });
 
-export const saveStateLoadingInitiated = (data) => ({
-    type: 'SAVE_STATE_LOADING_INITIATED',
+export const loadingInitiated = (data) => ({
+    type: 'LOADING_INITIATED',
     savedData: data
 });
 

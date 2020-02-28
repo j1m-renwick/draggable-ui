@@ -89,7 +89,7 @@ const reducer = (state, action) => {
             config = cloneDeep(state.config);
             get(config[action.id], action.key).value = action.value;
             return Object.assign({}, state, {config: config});
-        case 'SAVE_STATE_LOADING_INITIATED':
+        case 'LOADING_INITIATED':
             return Object.assign({}, state, {boxes: action.savedData.boxes, children: action.savedData.children, config: action.savedData.config});
         case 'LINKAGE_STARTED':
             return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});

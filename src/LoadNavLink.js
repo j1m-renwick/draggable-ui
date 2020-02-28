@@ -1,18 +1,32 @@
-import React, {useEffect} from 'react';
-import {store} from "./redux/store"
-import {saveStateLoadingInitiated} from "./redux/actions";
-import {sample} from "./sample";
+import {Nav} from "react-bootstrap";
+import React from "react";
+import {store} from "./redux/store";
+import {loadingInitiated} from "./redux/actions";
 import {defaultIconSpacingXMargin, iconDragYDistance} from "./config/constants";
 
-export function LoadButton(props) {
+export function LoadNavLink() {
 
-    useEffect(() => loadSampleData());
+    const loadRef = React.useRef(null);
 
-    function loadSampleData() {
-        store.dispatch(saveStateLoadingInitiated(transform()));
+    function readFile(fileToRead) {
+
+        let fileType = fileToRead.type;
+        if (fileType === "application/json") {
+
+            let reader = new FileReader();
+
+            reader.onload = (file => e => {
+                store.dispatch(loadingInitiated(transform(JSON.parse(e.target.result))));
+            })(fileToRead);
+
+            reader.readAsText(fileToRead);
+        } else {
+            // TODO replace with modal alert
+            alert("Cannot read files of type: " + fileType + " - only JSON files can be loaded.")
+        }
     }
 
-    function transform() {
+    function transform(file) {
         let boxes = {};
         let children = {};
         let config = {};
@@ -25,7 +39,7 @@ export function LoadButton(props) {
             }
             map[box.level].add(box.id);
             if (box.children.length > 0) {
-                box.children.forEach(item => mapChildren(sample.find(samp => samp.id === item)))
+                box.children.forEach(item => mapChildren(file.find(samp => samp.id === item)))
             }
         }
 
@@ -41,12 +55,12 @@ export function LoadButton(props) {
             2) get all children and push them to map array
             3) repeat until no more children
         */
-        sample.sort((i1, i2) => i1.level < i2.level ? -1: 0).forEach(item => mapChildren(item));
+        file.sort((i1, i2) => i1.level < i2.level ? -1: 0).forEach(item => mapChildren(item));
 
         // iterate through the new box order on each level and initialize them with the correct x / y coordinates
         for (const [key, value] of Object.entries(map)) {
             [...value].forEach((item, index) => {
-                populateState(sample.find(samp => samp.id === item), index * defaultIconSpacingXMargin, key * iconDragYDistance)
+                populateState(file.find(samp => samp.id === item), index * defaultIconSpacingXMargin, key * iconDragYDistance)
             })
         }
 
@@ -57,5 +71,13 @@ export function LoadButton(props) {
         return stateToReturn;
     }
 
-    return <></>
+
+    return (
+        <>
+            <Nav.Link onSelect={() => loadRef.current.click()} href="#load">Load</Nav.Link>
+            <input ref={loadRef} type="file" onChange={(e) => readFile(e.target.files[0])} hidden/>
+        </>
+    )
+
+
 }

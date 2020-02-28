@@ -6,7 +6,6 @@ import {ScrollButton} from "./ScrollButton";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {CreationButton} from "./CreationButton";
-import {LoadButton} from "./LoadButton";
 import {BoxTypeBar} from "./BoxTypeBar";
 import backgroundImage from "./images/background-pattern.jpg";
 import {NavBar} from "./NavBar";
@@ -18,7 +17,6 @@ function App() {
                 <NavBar/>
                 <div style={{margin: "10px 10px 0px 10px"}}>
                     <CreationButton/>
-                    <LoadButton/>
                     <ScrollButton direction="UP">Up</ScrollButton>
                     <ScrollButton direction="DOWN">Down</ScrollButton>
                 </div>
