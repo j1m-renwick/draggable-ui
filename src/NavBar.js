@@ -2,6 +2,7 @@ import {Nav, Navbar} from "react-bootstrap";
 import React, {useState} from "react";
 import {TemplateDetailsAccordion} from "./TemplateDetailsAccordion";
 import {LoadNavLink} from "./LoadNavLink";
+import {SaveNavLink} from "./SaveNavLink";
 
 export function NavBar() {
 
@@ -13,7 +14,7 @@ export function NavBar() {
                 <Navbar.Brand href="#home">TEMPLATE UI</Navbar.Brand>
                 <Nav>
                     <Nav.Link onSelect={() => setShowDetails(!showDetails)} href="#details">Details...</Nav.Link>
-                    <Nav.Link href="#save">Save</Nav.Link>
+                    <SaveNavLink/>
                     <LoadNavLink/>
                 </Nav>
             </Navbar>
