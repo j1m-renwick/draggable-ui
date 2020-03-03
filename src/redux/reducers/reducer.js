@@ -33,7 +33,6 @@ const reducer = (state, action) => {
                     let newConfigState = cloneDeep(state.config);
                     let configItemToUpdate = get(newConfigState[state.focusedBoxId], state.linkageReference);
                     configItemToUpdate.linkedId = action.id;
-
                     // set state and dispatch 'linkage finished' action
                     return loop(Object.assign({}, state, {
                         config: newConfigState,

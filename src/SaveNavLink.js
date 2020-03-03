@@ -1,7 +1,5 @@
-import {Nav, Navbar} from "react-bootstrap";
-import React, {useState} from "react";
-import {TemplateDetailsAccordion} from "./TemplateDetailsAccordion";
-import {LoadNavLink} from "./LoadNavLink";
+import {Nav} from "react-bootstrap";
+import React from "react";
 import saveAs from 'file-saver';
 import {store} from "./redux/store";
 
