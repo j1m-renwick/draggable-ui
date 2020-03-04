@@ -1,5 +1,4 @@
-// code generator takes a UUID and supplies a codeName - the same one if the UUID has already been passed, otherwise a new one
-
+// code generator takes a UUID and supplies a codeName - the same one if the GUID has already been passed, otherwise a new one
 const codeGenerator = (prefix, typeCode) => {
     let instance = {};
     let type = typeCode;
@@ -105,7 +104,7 @@ const exampleToSave = {
     }
 };
 
-function process(stateJson) {
+export function process(stateJson) {
 
     let generatedJson = {};
     generatedJson["codeName"] = "SOME_CODENAME";
@@ -153,9 +152,12 @@ function process(stateJson) {
             "answers": []
         };
 
+        // TODO add restrictions to configuration data and map out
+
         let answerCode;
         Object.entries(configJson.answers).forEach(answerItem => {
             answerCode = answerGenerator.getCode(answerItem[0]);
+            let data = answerItem[1];
             question.answers.push({
                 "codeName": answerCode,
                 "triageLevel": {
@@ -164,10 +166,10 @@ function process(stateJson) {
                 "groupScore": {
                     "$numberInt": "someIntHere"
                 },
-                "text1stPerson": answerItem[1].value
+                "text1stPerson": data.value
             });
-            if(answerItem[1].linkedId) {
-                generatedJson.questions.push(generateQuestionFromBoxType(answerItem[1].linkedId, stateJson.boxes[answerItem[1].linkedId], stateJson.config[answerItem[1].linkedId], stateJson.children[answerItem[1].linkedId], answerCode));
+            if(data.linkedId) {
+                generatedJson.questions.push(generateQuestionFromBoxType(data.linkedId, stateJson.boxes[data.linkedId], stateJson.config[data.linkedId], stateJson.children[data.linkedId], answerCode));
             }
         });
 
@@ -182,4 +184,4 @@ function process(stateJson) {
     }
 }
 
-console.dir(process(exampleToSave));
+// console.dir(process(exampleToSave));

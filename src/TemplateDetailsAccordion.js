@@ -52,7 +52,7 @@ export function TemplateDetailsAccordion(props) {
                                     <InputGroup.Prepend>
                                         <InputGroup.Text id="template-description">Template description</InputGroup.Text>
                                     </InputGroup.Prepend>
-                                    <FormControl
+                                    <FormControl onChange={() => console.log("hey")}
                                         placeholder="Template description here..."
                                         aria-label="Description"
                                         aria-describedby="template-description"
