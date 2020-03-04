@@ -1,7 +1,12 @@
 import React, {useEffect, useRef} from "react";
 import {Grid} from "./Grid";
 import {useSelector} from "react-redux";
-import {iconDragYDistance, levelsInViewPortCount} from "./config/constants";
+import {
+    iconDiameter,
+    iconDragYDistance,
+    iconWidthsInViewPortCount,
+    levelsInViewPortCount
+} from "./config/constants";
 import {debounce} from 'lodash';
 import {store} from "./redux/store";
 import {viewportScrolled} from "./redux/actions";
@@ -18,7 +23,9 @@ export function ViewPort(props) {
 
     const additionalStyling = {
         "height": (iconDragYDistance * levelsInViewPortCount) + "px",
-        "backgroundColor": linkageInProgress? "pink": "white"
+        "backgroundColor": linkageInProgress? "pink": "white",
+        // TODO 10 + 3 is the padding and border width on each side of the view port - remove this hardcoding
+        "width": (iconDiameter * iconWidthsInViewPortCount) + ((10+3)*2)
     };
 
     // snap to the correct level based on scroll location

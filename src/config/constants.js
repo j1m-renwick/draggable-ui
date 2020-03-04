@@ -1,6 +1,7 @@
 // all values are in pixels
 export const levelCount = 20;
 export const levelsInViewPortCount = 6;
+export const iconWidthsInViewPortCount = 13;
 
 export const levelHeight = 120;
 export const iconDiameter = 50;

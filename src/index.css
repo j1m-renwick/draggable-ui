@@ -70,8 +70,6 @@ code {
 }
 
 .viewport {
-    /*should be (50 * n) + (10 + 3) * 2 ...... 10 + 3 is the padding and border width on each side*/
-    width: 676px;
     border-style: solid;
     position: relative;
     margin: 10px;
