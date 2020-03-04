@@ -15,10 +15,6 @@ export function ViewPortConfigData(props) {
         return id !== undefined ? config[id] : {};
     }
 
-    function fieldChangeCallback(reference, e) {
-        store.dispatch(boxConfigUpdated(props.focusedId, reference, e.target.value));
-    }
-
     function renderConfigField(label, type, item) {
 
         switch(type) {
@@ -27,8 +23,7 @@ export function ViewPortConfigData(props) {
                     <div key={label}>
                         <label className="capitalise" htmlFor={label}>{label}</label>
                         <InputGroup key={label} className="mb-3" style={{"alignItems": "center"}}>
-                            <InputField id={label} for={label} defaultValue={item.value}
-                                        callback={fieldChangeCallback}/>
+                            <InputField id={label} boxId={props.focusedId} for={label} defaultValue={item.value}/>
                         </InputGroup>
                     </div>
                 );
@@ -40,8 +35,7 @@ export function ViewPortConfigData(props) {
                             Object.entries(item).map(it =>
                                 (
                                     <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
-                                        <InputField id={it[0]} for={label + "." + it[0]} defaultValue={it[1].value}
-                                                    callback={fieldChangeCallback}/>
+                                        <InputField id={it[0]} boxId={props.focusedId} for={label + "." + it[0]} defaultValue={it[1].value}/>
                                     </InputGroup>
                                 )
                             )
@@ -58,8 +52,7 @@ export function ViewPortConfigData(props) {
                                 (
                                     <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
                                         <Linker boxId={props.focusedId} reference={label + "." + it[0]} linkedId={item[it[0]].linkedId}/>
-                                        <InputField id={it[0]} for={label + "." + it[0]} defaultValue={it[1].value}
-                                                    callback={fieldChangeCallback}/>
+                                        <InputField id={it[0]} boxId={props.focusedId} for={label + "." + it[0]} defaultValue={it[1].value}/>
                                     </InputGroup>
                                 )
                             )
