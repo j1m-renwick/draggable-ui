@@ -1,12 +1,20 @@
+// code generator takes a UUID and supplies a codeName - the same one if the UUID has already been passed, otherwise a new one
 
 const codeGenerator = (prefix, typeCode) => {
     let instance = {};
-    let code = typeCode;
+    let type = typeCode;
     let questionNumber = 0;
+    const codeMap = {};
 
-    instance.getNextCode = () => {
-        questionNumber += 1;
-        return prefix + '_' + code + '_' + questionNumber;
+    instance.getCode = (guid) => {
+        if(!codeMap.hasOwnProperty(guid)) {
+            questionNumber += 1;
+            let codeToReturn = prefix + '_' + type + '_' + questionNumber;
+            codeMap[guid] = codeToReturn;
+            return codeToReturn;
+        } else {
+            return codeMap[guid];
+        }
     };
 
     return instance;
@@ -48,10 +56,12 @@ const exampleToSave = {
             answers: {
                 '061f17f8-ef1d-4e6e-845e-9c06a432ca20': {
                     value: 'Run\'s house',
+                    linkable: true,
                     linkedId: '5c6e4997-ab58-442a-be0b-ca91eb18d63b'
                 },
                 '03dc2743-a9c0-4c80-90f3-901c5cea0765': {
                     value: 'Joe\'s house',
+                    linkable: true,
                     linkedId: '01072689-9163-4d3f-987f-7483bb7bfc37'
                 }
             }
@@ -64,9 +74,9 @@ const exampleToSave = {
                 value: 'Enough now?'
             },
             answers: {
-                alias: 'answer',
-                '4e728edc-974a-4590-a6ee-1c67b4e5bb04': {
-                    value: 'Yes'
+                "e8a41ae0-fd8e-4bd4-aec8-65dcc4da64f9": {
+                    "linkable": true,
+                    "value": "Yes"
                 }
             }
         },
@@ -78,9 +88,9 @@ const exampleToSave = {
                 value: 'Hello?'
             },
             answers: {
-                alias: 'answer',
-                '6fe41f6a-aa7a-4d05-b9ae-9b97bd1b93e9': {
-                    value: 'Yes'
+                "8119942f-c12c-424c-94fb-61e243e8e773": {
+                    "linkable": true,
+                    "value": "Yes"
                 }
             }
         }
@@ -106,32 +116,35 @@ function process(stateJson) {
     generatedJson["publicationDateTime"] = new Date().toISOString();
     generatedJson["questions"] = [];
     let questionGenerator = codeGenerator('Q', 'SOME_TYPE');
-    let answerGenerator = codeGenerator( 'A', 'SOME_TYPE');
+    let answerGenerator = codeGenerator('A', 'SOME_TYPE');
 
     /*
         OK....
 
-        1) get all boxes with no children
+        1) get all boxes that are not children
         2) for these, call the generateQuestionFromBoxType
         3) make generateQuestionFromBoxType recursive so if there are linked children, fire another generateQuestionFromBoxType call
         4) generateQuestionFromBoxType to set visibilityCheckers
 
      */
 
-    Object.entries(stateJson.children).forEach(entry => {
-        let key = entry[0];
+    let children = Object.values(stateJson.children).flat();
+
+    Object.keys(stateJson.boxes).filter(id => !children.includes(id)).forEach(key => {
+        let boxJson = stateJson.boxes[key];
         let configJson = stateJson.config[key];
         let childrenJson = stateJson.children[key];
-        // console.dir(value);
-        // console.dir(jsonForQuestion);
-        generatedJson.questions.push(generateQuestionFromBoxType(key, childrenJson, configJson));
+        generatedJson.questions.push(generateQuestionFromBoxType(key, boxJson, configJson, childrenJson));
     });
 
     return generatedJson;
 
-    function generateQuestionFromBoxType(questionId, childrenJson, configJson) {
+    function generateQuestionFromBoxType(id, boxJson, configJson, childrenJson, parentAnswer) {
+
+        let questionCode = questionGenerator.getCode(id);
+
         let question = {
-            "codeName": questionGenerator.getNextCode(),
+            "codeName": questionCode,
             "type": "FREETEXT",
             "section": "EXPECTATIONS",
             "visibilityCheckers": [],
@@ -139,19 +152,49 @@ function process(stateJson) {
             "guidanceScript1stPerson": "For example: whether you would like to get a prescription for a particular medication",
             "answers": []
         };
-        // add answers and add them to the guid map
-        Object.entries(configJson.answers).filter(item => item[0] !== "alias").forEach(answerItems => {
-            let answerCode = answerGenerator.getNextCode();
-            question.answers.push({
-                "codeName": answerCode,
-                "triageLevel": {
-                    "$numberInt": "1"
-                },
-                "groupScore": {
-                    "$numberInt": "0"
+
+        let answerCode;
+        // if(boxJson.type === "spiral-icon") {
+            Object.entries(configJson.answers).forEach(answerItem => {
+                answerCode = answerGenerator.getCode(answerItem[0]);
+                question.answers.push({
+                    "codeName": answerCode,
+                    "triageLevel": {
+                        "$numberInt": "1"
+                    },
+                    "groupScore": {
+                        "$numberInt": "0"
+                    },
+                    "text1stPerson": answerItem[1].value
+                });
+                if(answerItem[1].linkedId) {
+                    generatedJson.questions.push(generateQuestionFromBoxType(answerItem[1].linkedId, stateJson.boxes[answerItem[1].linkedId], stateJson.config[answerItem[1].linkedId], stateJson.children[answerItem[1].linkedId], answerCode));
                 }
             });
-        });
+        // } else {
+        //     answerCode = answerGenerator.getCode("12345");
+        //     question.answers.push({
+        //         "codeName": answerCode,
+        //         "triageLevel": {
+        //             "$numberInt": "1"
+        //         },
+        //         "groupScore": {
+        //             "$numberInt": "0"
+        //         },
+        //         "text1stPerson": configJson.answer.value
+        //     });
+        //     if(configJson.answer.linkedId) {
+        //         console.log("NEVER CALLED!");
+        //         generatedJson.questions.push(generateQuestionFromBoxType(configJson.answer.linkedId, stateJson.boxes[configJson.answer.linkedId], stateJson.config[configJson.answer.linkedId], stateJson.children[configJson.answer.linkedId], answerCode));
+        //     }
+        // }
+
+        if(parentAnswer !== undefined) {
+            question.visibilityCheckers.push({
+                "@class": "com.econsult.consultation.metadata.visibility.RequiredAnswerChecker",
+                "answerId": parentAnswer
+            });
+        }
 
         return question;
     }
