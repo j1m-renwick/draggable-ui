@@ -23,17 +23,41 @@ export function ViewPortConfigData(props) {
 
         switch(type) {
             case "TEXT":
+                return (
+                    <div key={label}>
+                        <label className="capitalise" htmlFor={label}>{label}</label>
+                        <InputGroup key={label} className="mb-3" style={{"alignItems": "center"}}>
+                            <InputField id={label} for={label} defaultValue={item.value}
+                                        callback={fieldChangeCallback}/>
+                        </InputGroup>
+                    </div>
+                );
             case "TEXT_ARRAY":
                 return (
                     <div key={label}>
                         <label className="capitalise" htmlFor={label}>{label}</label>
                         {
-                            Object.entries(item).map((it, index) =>
+                            Object.entries(item).map(it =>
                                 (
                                     <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
-                                        {it[1].linkable === true ?
-                                            <Linker boxId={props.focusedId} reference={label + "." + it[0]}
-                                                    linkedId={item[it[0]].linkedId}/> : <></>}
+                                        <InputField id={it[0]} for={label + "." + it[0]} defaultValue={it[1].value}
+                                                    callback={fieldChangeCallback}/>
+                                    </InputGroup>
+                                )
+                            )
+                        }
+                    </div>
+                );
+            case "ANSWER_TEXT":
+            case "ANSWER_TEXT_ARRAY":
+                return (
+                    <div key={label}>
+                        <label className="capitalise" htmlFor={label}>{label}</label>
+                        {
+                            Object.entries(item).map(it =>
+                                (
+                                    <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
+                                        <Linker boxId={props.focusedId} reference={label + "." + it[0]} linkedId={item[it[0]].linkedId}/>
                                         <InputField id={it[0]} for={label + "." + it[0]} defaultValue={it[1].value}
                                                     callback={fieldChangeCallback}/>
                                     </InputGroup>

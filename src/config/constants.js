@@ -19,7 +19,7 @@ export const BoxTypeClasses = {
             input: "TEXT"
         },
         answers: {
-            input: "TEXT_ARRAY",
+            input: "ANSWER_TEXT_ARRAY",
             linkable: true
         }
     },
@@ -32,7 +32,7 @@ export const BoxTypeClasses = {
         },
         answers: {
             alias: "answer",
-            input: "TEXT",
+            input: "ANSWER_TEXT",
             linkable: true
         }
     },
