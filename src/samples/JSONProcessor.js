@@ -74,9 +74,9 @@ const exampleToSave = {
                 value: 'Enough now?'
             },
             answers: {
-                "e8a41ae0-fd8e-4bd4-aec8-65dcc4da64f9": {
-                    "linkable": true,
-                    "value": "Yes"
+                'e8a41ae0-fd8e-4bd4-aec8-65dcc4da64f9': {
+                    linkable: true,
+                    value: 'Yes'
                 }
             }
         },
@@ -88,9 +88,9 @@ const exampleToSave = {
                 value: 'Hello?'
             },
             answers: {
-                "8119942f-c12c-424c-94fb-61e243e8e773": {
-                    "linkable": true,
-                    "value": "Yes"
+                '8119942f-c12c-424c-94fb-61e243e8e773': {
+                    linkable: true,
+                    value: 'Yes'
                 }
             }
         }
@@ -145,53 +145,35 @@ function process(stateJson) {
 
         let question = {
             "codeName": questionCode,
-            "type": "FREETEXT",
+            "type": boxJson.type,
             "section": "EXPECTATIONS",
             "visibilityCheckers": [],
             "text1stPerson": configJson.question.value,
-            "guidanceScript1stPerson": "For example: whether you would like to get a prescription for a particular medication",
+            "guidanceScript1stPerson": "Some guidance text here",
             "answers": []
         };
 
         let answerCode;
-        // if(boxJson.type === "spiral-icon") {
-            Object.entries(configJson.answers).forEach(answerItem => {
-                answerCode = answerGenerator.getCode(answerItem[0]);
-                question.answers.push({
-                    "codeName": answerCode,
-                    "triageLevel": {
-                        "$numberInt": "1"
-                    },
-                    "groupScore": {
-                        "$numberInt": "0"
-                    },
-                    "text1stPerson": answerItem[1].value
-                });
-                if(answerItem[1].linkedId) {
-                    generatedJson.questions.push(generateQuestionFromBoxType(answerItem[1].linkedId, stateJson.boxes[answerItem[1].linkedId], stateJson.config[answerItem[1].linkedId], stateJson.children[answerItem[1].linkedId], answerCode));
-                }
+        Object.entries(configJson.answers).forEach(answerItem => {
+            answerCode = answerGenerator.getCode(answerItem[0]);
+            question.answers.push({
+                "codeName": answerCode,
+                "triageLevel": {
+                    "$numberInt": "someIntHere"
+                },
+                "groupScore": {
+                    "$numberInt": "someIntHere"
+                },
+                "text1stPerson": answerItem[1].value
             });
-        // } else {
-        //     answerCode = answerGenerator.getCode("12345");
-        //     question.answers.push({
-        //         "codeName": answerCode,
-        //         "triageLevel": {
-        //             "$numberInt": "1"
-        //         },
-        //         "groupScore": {
-        //             "$numberInt": "0"
-        //         },
-        //         "text1stPerson": configJson.answer.value
-        //     });
-        //     if(configJson.answer.linkedId) {
-        //         console.log("NEVER CALLED!");
-        //         generatedJson.questions.push(generateQuestionFromBoxType(configJson.answer.linkedId, stateJson.boxes[configJson.answer.linkedId], stateJson.config[configJson.answer.linkedId], stateJson.children[configJson.answer.linkedId], answerCode));
-        //     }
-        // }
+            if(answerItem[1].linkedId) {
+                generatedJson.questions.push(generateQuestionFromBoxType(answerItem[1].linkedId, stateJson.boxes[answerItem[1].linkedId], stateJson.config[answerItem[1].linkedId], stateJson.children[answerItem[1].linkedId], answerCode));
+            }
+        });
 
         if(parentAnswer !== undefined) {
             question.visibilityCheckers.push({
-                "@class": "com.econsult.consultation.metadata.visibility.RequiredAnswerChecker",
+                "@class": "some.fully.qualified.class.here",
                 "answerId": parentAnswer
             });
         }
@@ -199,31 +181,5 @@ function process(stateJson) {
         return question;
     }
 }
-
-// {
-//     "codeName": questionGenerator.getNextCode(),
-//     // "codeName": "Q_ALG_HFV_AD_1",
-//     "type": "FREETEXT",
-//     "section": "EXPECTATIONS",
-//     "visibilityCheckers": [
-//     {
-//         "@class": "com.econsult.consultation.metadata.visibility.RequiredAnswerChecker",
-//         "answerId": "A_ALG_HFV__165_BR1_EXPECTATIONS_1_TREATMENTPAST_YES"
-//     }
-// ],
-//     "text1stPerson": sourceJson.question,
-//     "guidanceScript1stPerson": "For example: whether you would like to get a prescription for a particular medication",
-//     "answers": [
-//     {
-//         "codeName": "A_ALG_HFV_AD_1",
-//         "triageLevel": {
-//             "$numberInt": "1"
-//         },
-//         "groupScore": {
-//             "$numberInt": "0"
-//         }
-//     }
-// ]
-// }
 
 console.dir(process(exampleToSave));
