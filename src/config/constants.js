@@ -30,7 +30,8 @@ export const BoxTypeClasses = {
         question: {
             input: "TEXT"
         },
-        answer: {
+        answers: {
+            alias: "answer",
             input: "TEXT",
             linkable: true
         }
@@ -42,7 +43,8 @@ export const BoxTypeClasses = {
         question: {
             input: "TEXT"
         },
-        answer: {
+        answers: {
+            alias: "answer",
             input: "IMAGE_UPLOAD_URL",
             linkable: true
         }

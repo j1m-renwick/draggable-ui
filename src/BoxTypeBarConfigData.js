@@ -16,11 +16,12 @@ export function BoxTypeBarConfigData(props) {
             <br/>
             {
                 Object.entries(BoxTypeClasses[props.focusBoxType]).map(item => {
+                    let label = item[1]["alias"] === undefined ? item[0] : item[1]["alias"];
                     return (
-                        <div key={item[0]} style={flexContainerStyling}>
+                        <div key={label} style={flexContainerStyling}>
                             <div style={{"display": "flex"}}>
                             {item[1].linkable === true ? <Linker inactive={true}/> : <></>}
-                                <h6 style={{"marginBottom": "initial"}} className="capitalise">{item[0]}</h6>
+                                <h6 style={{"marginBottom": "initial"}} className="capitalise">{label}</h6>
                             </div>
                                 <Badge variant="secondary">{item[1]["input"]}</Badge>
                         </div>

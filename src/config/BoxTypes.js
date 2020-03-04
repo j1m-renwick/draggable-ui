@@ -53,32 +53,36 @@ const newSpiralIcon = () => {
 };
 
 const newEqualsIcon = () => {
-    return {
+    let json = {
         title: {
             value: ""
         },
         question: {
             value: ""
         },
-        answer: {
-            value: "",
-            linkable: true
-        }
-    }
+        answer: {}
+    };
+    json.answer[uuid.v4()] = {
+        value: "",
+        linkable: true
+    };
+    return json;
 };
 
 // TODO this isn't correct
 const newPicIcon = () => {
-    return {
+    let json = {
         title: {
             value: ""
         },
         question: {
             value: ""
         },
-        answer: {
-            value: "",
-            linkable: true
-        },
-    }
+        answer: {}
+    };
+    json.answer[uuid.v4()] = {
+        value: "",
+        linkable: true
+    };
+    return json;
 };

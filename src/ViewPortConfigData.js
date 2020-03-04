@@ -19,46 +19,42 @@ export function ViewPortConfigData(props) {
         store.dispatch(boxConfigUpdated(props.focusedId, reference, e.target.value));
     }
 
-    function renderConfigField(title, type, item) {
+    function renderConfigField(label, type, item) {
+
         switch(type) {
             case "TEXT":
-                return (
-                    <div key={title}>
-                        <label className="capitalise" htmlFor={title}>{title}</label>
-                        <InputGroup key={title} className="mb-3" style={{"alignItems": "center"}}>
-                            {item.linkable === true ? <Linker boxId={props.focusedId} reference={title} linkedId={item.linkedId}/> : <></>}
-                            <InputField id={title} for={title} defaultValue={item.value}
-                                        callback={fieldChangeCallback}/>
-                        </InputGroup>
-                    </div>
-                );
             case "TEXT_ARRAY":
                 return (
-                    <div key={title}>
-                        <label className="capitalise" htmlFor={title}>{title}</label>
+                    <div key={label}>
+                        <label className="capitalise" htmlFor={label}>{label}</label>
                         {
-                            Object.entries(item).map((it, index) => (
-                                <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
-                                    {it[1].linkable === true ? <Linker boxId={props.focusedId} reference={title + "." + it[0]} linkedId={item[it[0]].linkedId}/> : <></>}
-                                    <InputField id={it[0]} for={title + "." + it[0]} defaultValue={it[1].value}
-                                                callback={fieldChangeCallback}/>
-                                </InputGroup>
-                            ))
+                            Object.entries(item).map((it, index) =>
+                                (
+                                    <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
+                                        {it[1].linkable === true ?
+                                            <Linker boxId={props.focusedId} reference={label + "." + it[0]}
+                                                    linkedId={item[it[0]].linkedId}/> : <></>}
+                                        <InputField id={it[0]} for={label + "." + it[0]} defaultValue={it[1].value}
+                                                    callback={fieldChangeCallback}/>
+                                    </InputGroup>
+                                )
+                            )
                         }
                     </div>
                 );
             default:
-                console.error("Warning: Attribute '" + title + "' has an unrecognised render type of '" + type + "' and will not be rendered.");
-                return <div key={title}/>
+                console.error("Warning: Attribute '" + label + "' has an unrecognised render type of '" + type + "' and will not be rendered.");
+                return <div key={label}/>
         }
     }
 
     return (
         <>
             {
-                Object.entries(BoxTypeClasses[props.focusBoxType]).map(type =>
-                renderConfigField(type[0], type[1]["input"], getConfig(props.focusedId)[type[0]])
-                )
+                Object.entries(BoxTypeClasses[props.focusBoxType]).map(type => {
+                    let label = type[1]["alias"] === undefined ? type[0] : type[1]["alias"];
+                    return renderConfigField(label, type[1]["input"], getConfig(props.focusedId)[label])
+                })
             }
         </>
     )
