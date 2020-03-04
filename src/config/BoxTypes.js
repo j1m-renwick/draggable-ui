@@ -60,9 +60,9 @@ const newEqualsIcon = () => {
         question: {
             value: ""
         },
-        answer: {}
+        answers: {}
     };
-    json.answer[uuid.v4()] = {
+    json.answers[uuid.v4()] = {
         value: "",
         linkable: true
     };
@@ -78,9 +78,9 @@ const newPicIcon = () => {
         question: {
             value: ""
         },
-        answer: {}
+        answers: {}
     };
-    json.answer[uuid.v4()] = {
+    json.answers[uuid.v4()] = {
         value: "",
         linkable: true
     };

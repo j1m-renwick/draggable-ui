@@ -9,16 +9,18 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = process.env.NODE_ENV !== 'production' ?
     [installInvariant()] : [];
 
+export const initialState = {
+    currentLevel: 0,
+        linkageInProgress: false,
+    linkageReference: null,
+    hoveredLinkId: null,
+    boxes: {},
+    config: {},
+    children: {}
+}
+
 export const store = createStore(rootReducer,
-    {
-            currentLevel: 0,
-            linkageInProgress: false,
-            linkageReference: null,
-            hoveredLinkId: null,
-            boxes: {},
-            config: {},
-            children: {}
-            },
+    initialState,
     composeEnhancers(
         applyMiddleware(...middleware),
         install()

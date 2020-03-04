@@ -4,6 +4,7 @@ import {Cmd, loop} from "redux-loop";
 import {linkageFinished} from "../actions";
 import {get, cloneDeep} from "lodash";
 import {newBoxData} from "../../config/BoxTypes";
+import {initialState} from "../store";
 
 // TODO split reducers and CombineReducers
 const reducer = (state, action) => {
@@ -89,7 +90,8 @@ const reducer = (state, action) => {
             get(config[action.id], action.key).value = action.value;
             return Object.assign({}, state, {config: config});
         case 'LOADING_INITIATED':
-            return Object.assign({}, state, {boxes: action.savedData.boxes, children: action.savedData.children, config: action.savedData.config});
+            let resetState = cloneDeep(initialState);
+            return Object.assign({}, resetState, {boxes: action.savedData.boxes, children: action.savedData.children, config: action.savedData.config});
         case 'LINKAGE_STARTED':
             return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});
         case 'LINKAGE_FINISHED':
