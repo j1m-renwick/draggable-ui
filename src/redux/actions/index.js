@@ -70,3 +70,9 @@ export const linkHoverFinished = (linkedId) => ({
     type: 'LINK_HOVER_FINISHED',
     linkedId: linkedId
 });
+
+export const TemplateDetailsUpdated = (key, value) => ({
+    type: 'TEMPLATE_DETAILS_UPDATED',
+    key: key,
+    value: value
+});

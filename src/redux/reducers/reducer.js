@@ -128,6 +128,10 @@ const reducer = (state, action) => {
             return Object.assign({}, state, {hoveredLinkId: action.linkedId});
         case 'LINK_HOVER_FINISHED':
             return Object.assign({}, state, {hoveredLinkId: null});
+        case 'TEMPLATE_DETAILS_UPDATED':
+            let projectDetails = {...state.projectDetails};
+            projectDetails[action.key] = action.value;
+            return Object.assign({}, state, {projectDetails: projectDetails});
         default:
             return state
     }

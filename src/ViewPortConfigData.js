@@ -1,7 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
-import {InputField} from "./InputField";
+import {ConfigInputField} from "./ConfigInputField";
 import {BoxTypeClasses} from "./config/constants";
 import {Linker} from "./Linker";
 
@@ -21,7 +21,7 @@ export function ViewPortConfigData(props) {
                     <div key={label}>
                         <label className="capitalise" htmlFor={label}>{label}</label>
                         <InputGroup key={label} className="mb-3" style={{"alignItems": "center"}}>
-                            <InputField id={label} boxId={props.focusedId} for={identifier} defaultValue={item.value}/>
+                            <ConfigInputField id={label} boxId={props.focusedId} for={identifier} defaultValue={item.value}/>
                         </InputGroup>
                     </div>
                 );
@@ -33,7 +33,7 @@ export function ViewPortConfigData(props) {
                             Object.entries(item).map(it =>
                                 (
                                     <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
-                                        <InputField id={it[0]} boxId={props.focusedId} for={identifier + "." + it[0]} defaultValue={it[1].value}/>
+                                        <ConfigInputField id={it[0]} boxId={props.focusedId} for={identifier + "." + it[0]} defaultValue={it[1].value}/>
                                     </InputGroup>
                                 )
                             )
@@ -50,7 +50,7 @@ export function ViewPortConfigData(props) {
                                 (
                                     <InputGroup key={it[0]} className="mb-3" style={{"alignItems": "center"}}>
                                         <Linker boxId={props.focusedId} reference={identifier + "." + it[0]} linkedId={item[it[0]].linkedId}/>
-                                        <InputField id={it[0]} boxId={props.focusedId} for={identifier + "." + it[0]} defaultValue={it[1].value}/>
+                                        <ConfigInputField id={it[0]} boxId={props.focusedId} for={identifier + "." + it[0]} defaultValue={it[1].value}/>
                                     </InputGroup>
                                 )
                             )

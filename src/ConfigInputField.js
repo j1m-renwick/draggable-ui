@@ -4,13 +4,13 @@ import {store} from "./redux/store";
 import {boxConfigUpdated} from "./redux/actions";
 
 
-export function InputField(props) {
+export function ConfigInputField(props) {
 
-    function fieldChangeCallback(e) {
+    function updateTextField(e) {
         store.dispatch(boxConfigUpdated(props.boxId, props.for, e.target.value));
     }
 
     return (
-        <FormControl onChange={fieldChangeCallback} defaultValue={props.defaultValue}/>
+        <FormControl onChange={updateTextField} defaultValue={props.defaultValue}/>
     )
 }

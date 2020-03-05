@@ -1,5 +1,6 @@
-import {Accordion, Card, Col, FormControl, InputGroup, Row} from "react-bootstrap";
+import {Accordion, Card, Col, Row} from "react-bootstrap";
 import React from "react";
+import {TemplateDetailsInputField} from "./TemplateDetailsInputField";
 
 export function TemplateDetailsAccordion(props) {
 
@@ -10,68 +11,23 @@ export function TemplateDetailsAccordion(props) {
                     <Card.Body>
                         <Row>
                             <Col xs={3}>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text id="template-code">Code</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl
-                                        placeholder="Code here..."
-                                        aria-label="Code"
-                                        aria-describedby="template-code"
-                                    />
-                                </InputGroup>
+                                <TemplateDetailsInputField label="Template Code" fieldId="templateCode" placeholder="Code here..."/>
                             </Col>
                             <Col xs={3}>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text id="template-type">Template type</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl
-                                        placeholder="Dropdown...?"
-                                        aria-label="Template Type"
-                                        aria-describedby="template-type"
-                                    />
-                                </InputGroup>
+                                <TemplateDetailsInputField label="Template Type" fieldId="templateType" placeholder="Dropdown...?"/>
                             </Col>
                             <Col xs={3}>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text id="template-version">Version #</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl
-                                        placeholder="Version here..."
-                                        aria-label="Template Version"
-                                        aria-describedby="template-version"
-                                    />
-                                </InputGroup>
+                                <TemplateDetailsInputField label="Version #" fieldId="templateVersion" placeholder="Version here..."/>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={9}>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text id="template-description">Template description</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl onChange={() => console.log("hey")}
-                                        placeholder="Template description here..."
-                                        aria-label="Description"
-                                        aria-describedby="template-description"
-                                    />
-                                </InputGroup>
+                                <TemplateDetailsInputField label="Template Description" fieldId="templateDescription" placeholder="Template description here..."/>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={9}>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text id="template-version-desc">Version description</InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl
-                                        placeholder="Version description here..."
-                                        aria-label="Version Description"
-                                        aria-describedby="template-version-desc"
-                                    />
-                                </InputGroup>
+                                <TemplateDetailsInputField label="Template Version Description" fieldId="templateVersionDescription" placeholder="Version description here..."/>
                             </Col>
                         </Row>
                     </Card.Body>
