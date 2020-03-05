@@ -1,7 +1,7 @@
 import {Direction} from "../../ScrollButton";
 import {defaultIconSpacingXMargin, iconDragYDistance, levelCount, levelsInViewPortCount} from "../../config/constants";
 import {Cmd, loop} from "redux-loop";
-import {linkageFinished} from "../actions";
+import {linkageFinished, dataLoaded} from "../actions";
 import {get, cloneDeep} from "lodash";
 import {newBoxData} from "../../config/BoxTypes";
 import {initialState} from "../store";
@@ -113,7 +113,9 @@ const reducer = (state, action) => {
             return Object.assign({}, state, {config: config});
         case 'LOADING_INITIATED':
             let resetState = cloneDeep(initialState);
-            return Object.assign({}, resetState, {
+            return loop(resetState, Cmd.action(dataLoaded(action.savedData)));
+        case 'DATA_LOADED':
+            return Object.assign({}, state, {
                 boxes: action.savedData.boxes,
                 children: action.savedData.children,
                 config: action.savedData.config

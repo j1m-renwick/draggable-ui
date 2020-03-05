@@ -5,10 +5,11 @@ import {ConfigDataSection} from "./ConfigDataSection";
 import {ScrollButton} from "./ScrollButton";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
-import {CreationButton} from "./CreationButton";
+import {CreateButton} from "./CreateButton";
 import {BoxTypeBar} from "./BoxTypeBar";
 import backgroundImage from "./images/background-pattern.jpg";
 import {NavBar} from "./NavBar";
+import {DeleteButton} from "./DeleteButton";
 
 function App() {
     return (
@@ -16,9 +17,10 @@ function App() {
             <Provider store={store}>
                 <NavBar/>
                 <div style={{margin: "10px 10px 0px 10px"}}>
-                    <CreationButton/>
+                    <CreateButton/>
                     <ScrollButton direction="UP">Up</ScrollButton>
                     <ScrollButton direction="DOWN">Down</ScrollButton>
+                    <DeleteButton/>
                 </div>
                 <div className="app">
                     <BoxTypeBar/>

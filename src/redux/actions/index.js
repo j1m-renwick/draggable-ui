@@ -47,6 +47,11 @@ export const loadingInitiated = (data) => ({
     savedData: data
 });
 
+export const dataLoaded = (data) => ({
+    type: 'DATA_LOADED',
+    savedData: data
+});
+
 export const linkageStarted = (reference) => ({
     type: 'LINKAGE_STARTED',
     reference: reference
