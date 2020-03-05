@@ -14,7 +14,7 @@ export function SaveNavLink() {
         saveAs(blobToSave, "UI FLOW " + date + " at " + time + ".json");
     }
 
-    return <Nav.Link onSelect={saveFile} href="#save">Save</Nav.Link>
+    return <Nav.Link onClick={saveFile}>Save</Nav.Link>
 
 
 }

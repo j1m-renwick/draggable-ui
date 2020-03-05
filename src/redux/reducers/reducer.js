@@ -12,9 +12,9 @@ const reducer = (state, action) => {
     let boxes;
     let config;
     let children;
-    switch (action.type) {
+    switch(action.type) {
         case 'BOX_FOCUSED':
-            if (state.linkageInProgress) {
+            if(state.linkageInProgress) {
                 if(action.focusContext === "VIEW_PORT" && (state.focusedBoxId !== action.id)) {
                     // find config link item for the previously focused box
                     let previouslyFocusedBoxConfig = state.config[state.focusedBoxId];
@@ -22,7 +22,7 @@ const reducer = (state, action) => {
                     // add/set the previously focused box children to the new box focus id
                     let previouslyFocusedBoxChildren = [...state.children[state.focusedBoxId]];
                     index = previouslyFocusedBoxChildren.findIndex(item => item === previouslyFocusedLinkItem.linkedId);
-                    if (index !== -1) {
+                    if(index !== -1) {
                         previouslyFocusedBoxChildren[index] = action.id;
                     } else {
                         previouslyFocusedBoxChildren.push(action.id)
@@ -81,8 +81,30 @@ const reducer = (state, action) => {
                 children: children,
                 config: config
             });
+        case 'BOX_DELETED':
+            boxes = {...state.boxes};
+            delete boxes[state.focusedBoxId];
+            children = {};
+            Object.entries(state.children).forEach(entry => {
+                if(entry[0] !== state.focusedBoxId) {
+                    children[entry[0]] = entry[1].filter(item => item !== state.focusedBoxId);
+                }
+            });
+            config = {};
+            Object.entries(state.config).forEach(entry => {
+                if(entry[0] !== state.focusedBoxId) {
+                    let newConfig = cloneDeep(entry[1]);
+                    Object.values(newConfig.answers).forEach(value => {
+                        if (value.linkedId === state.focusedBoxId) {
+                            delete value.linkedId;
+                        }
+                    });
+                    config[entry[0]] = newConfig;
+                }
+            });
+            return Object.assign({}, state, {boxes: boxes, config: config, children: children, focusedBoxId: undefined, focusBoxType: undefined, focusContext: undefined});
         case 'SCROLL_BUTTON_CLICKED':
-            return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
+            return Object.assign({}, state, {currentLevel: action.scrollDirection === Direction.DOWN ? Math.min(state.currentLevel + 1, levelCount - levelsInViewPortCount) : Math.max(state.currentLevel - 1, 0)});
         case 'VIEWPORT_SCROLLED':
             return Object.assign({}, state, {currentLevel: action.newCurrentLevel});
         case 'BOX_CONFIG_UPDATED':
@@ -91,7 +113,11 @@ const reducer = (state, action) => {
             return Object.assign({}, state, {config: config});
         case 'LOADING_INITIATED':
             let resetState = cloneDeep(initialState);
-            return Object.assign({}, resetState, {boxes: action.savedData.boxes, children: action.savedData.children, config: action.savedData.config});
+            return Object.assign({}, resetState, {
+                boxes: action.savedData.boxes,
+                children: action.savedData.children,
+                config: action.savedData.config
+            });
         case 'LINKAGE_STARTED':
             return Object.assign({}, state, {linkageInProgress: true, linkageReference: action.reference});
         case 'LINKAGE_FINISHED':

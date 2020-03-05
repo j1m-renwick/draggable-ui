@@ -15,7 +15,7 @@ export function ExportNavLink() {
         saveAs(blobToSave, "template " + date + " at " + time + ".json");
     }
 
-    return <Nav.Link onSelect={exportTemplateFile} href="#export">Export</Nav.Link>
+    return <Nav.Link onClick={exportTemplateFile}>Export</Nav.Link>
 
 
 }

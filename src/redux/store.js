@@ -11,7 +11,7 @@ const middleware = process.env.NODE_ENV !== 'production' ?
 
 export const initialState = {
     currentLevel: 0,
-        linkageInProgress: false,
+    linkageInProgress: false,
     linkageReference: null,
     hoveredLinkId: null,
     boxes: {},

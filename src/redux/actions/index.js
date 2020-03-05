@@ -14,6 +14,10 @@ export const boxCreated = () => ({
     type: 'BOX_CREATED'
 });
 
+export const boxDeleted = () => ({
+    type: 'BOX_DELETED'
+});
+
 export const boxConfigUpdated = (id, key, value) => ({
     type: 'BOX_CONFIG_UPDATED',
     id: id,

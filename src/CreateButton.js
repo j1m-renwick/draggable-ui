@@ -4,7 +4,7 @@ import {store} from "./redux/store"
 import {boxCreated} from "./redux/actions";
 import {useSelector} from "react-redux";
 
-export function CreationButton(props) {
+export function CreateButton(props) {
 
     const additionalStyling = {
         "width": "20px",

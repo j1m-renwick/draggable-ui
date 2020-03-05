@@ -9,7 +9,6 @@ export function LoadNavLink() {
     const loadRef = React.useRef(null);
 
     function readFile(fileToRead) {
-
         let fileType = fileToRead.type;
         if (fileType === "application/json") {
 
@@ -20,6 +19,8 @@ export function LoadNavLink() {
             })(fileToRead);
 
             reader.readAsText(fileToRead);
+            // clearing the input element's value so that onChange will fire next time it is 'clicked'.
+            loadRef.current.value = null;
         } else {
             // TODO replace with modal alert
             alert("Cannot read files of type: " + fileType + " - only JSON files can be loaded.")
@@ -74,7 +75,7 @@ export function LoadNavLink() {
 
     return (
         <>
-            <Nav.Link onSelect={() => loadRef.current.click()} href="#load">Load</Nav.Link>
+            <Nav.Link onClick={() => loadRef.current.click()}>Load</Nav.Link>
             <input ref={loadRef} type="file" onChange={(e) => readFile(e.target.files[0])} hidden/>
         </>
     )
