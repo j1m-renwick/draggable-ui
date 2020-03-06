@@ -40,7 +40,7 @@ export function LoadNavLink() {
             }
             map[box.level].add(box.id);
             if (box.children.length > 0) {
-                box.children.forEach(item => mapChildren(file.find(samp => samp.id === item)))
+                box.children.forEach(item => mapChildren(file.data.find(samp => samp.id === item)))
             }
         }
 
@@ -56,16 +56,17 @@ export function LoadNavLink() {
             2) get all children and push them to map array
             3) repeat until no more children
         */
-        file.sort((i1, i2) => i1.level < i2.level ? -1: 0).forEach(item => mapChildren(item));
+        file.data.sort((i1, i2) => i1.level < i2.level ? -1: 0).forEach(item => mapChildren(item));
 
         // iterate through the new box order on each level and initialize them with the correct x / y coordinates
         for (const [key, value] of Object.entries(map)) {
             [...value].forEach((item, index) => {
-                populateState(file.find(samp => samp.id === item), index * defaultIconSpacingXMargin, key * iconDragYDistance)
+                populateState(file.data.find(samp => samp.id === item), index * defaultIconSpacingXMargin, key * iconDragYDistance)
             })
         }
 
         let stateToReturn = {};
+        stateToReturn.projectDetails = file.projectDetails;
         stateToReturn.boxes = boxes;
         stateToReturn.children = children;
         stateToReturn.config = config;

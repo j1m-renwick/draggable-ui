@@ -19,7 +19,7 @@ export function TemplateDetailsInputField(props) {
             <InputGroup.Prepend>
                 <InputGroup.Text id={props.fieldId}>{props.label}</InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl placeholder={props.placeholder} onChange={updateTextField} defaultValue={fieldValue}/>
+            <FormControl placeholder={props.placeholder} onChange={updateTextField} value={fieldValue} defaultValue={fieldValue}/>
         </InputGroup>
     )
 }

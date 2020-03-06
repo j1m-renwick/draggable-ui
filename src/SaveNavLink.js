@@ -17,8 +17,9 @@ export function SaveNavLink() {
 
     function transformToSaveFile(state) {
         // TODO add project details in
-        // add child
-        return Object.entries(state.boxes).map(entry => {
+        const saveFileToReturn = {};
+        saveFileToReturn.projectDetails = state.projectDetails;
+        saveFileToReturn.data = Object.entries(state.boxes).map(entry => {
             let box = {};
             let entryKey = entry[0];
             let entryValue = entry[1];
@@ -28,8 +29,8 @@ export function SaveNavLink() {
             box.config = state.config[entryKey];
             box.children = state.children[entryKey];
             return box;
-        })
-
+        });
+        return saveFileToReturn;
     }
 
     return <Nav.Link onClick={saveFile}>Save</Nav.Link>

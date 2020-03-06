@@ -116,6 +116,7 @@ const reducer = (state, action) => {
             return loop(resetState, Cmd.action(dataLoaded(action.savedData)));
         case 'DATA_LOADED':
             return Object.assign({}, state, {
+                projectDetails: action.savedData.projectDetails,
                 boxes: action.savedData.boxes,
                 children: action.savedData.children,
                 config: action.savedData.config

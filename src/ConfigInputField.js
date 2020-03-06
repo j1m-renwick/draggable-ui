@@ -11,6 +11,6 @@ export function ConfigInputField(props) {
     }
 
     return (
-        <FormControl onChange={updateTextField} defaultValue={props.defaultValue}/>
+        <FormControl onChange={updateTextField} value={props.defaultValue} defaultValue={props.defaultValue}/>
     )
 }
