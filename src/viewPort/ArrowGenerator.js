@@ -1,10 +1,10 @@
 import React from "react";
 import {ArrowSvg, LineOrientation} from "@j1m/rsa";
 import {useSelector} from "react-redux";
-import {iconDiameter, iconSpacingYMargin} from "./config/constants";
+import {iconDiameter, iconSpacingYMargin} from "../constants/layoutConstants";
 import uuid from 'uuid';
 
-export function ArrowGenerator(props) {
+export function ArrowGenerator() {
 
     const children = useSelector(state => state.children);
     const boxes = useSelector(state => state.boxes);
@@ -17,11 +17,11 @@ export function ArrowGenerator(props) {
         return (
             <>
                 {
-                    Object.entries(children).filter(item => item.length > 0).map((item, index) => {
+                    Object.entries(children).filter(item => item.length > 0).map(item => {
                         let entryKey = item[0];
                         let entryValue = item[1];
                         let arrowSource = boxes[entryKey];
-                        return entryValue.map((child, index) => {
+                        return entryValue.map(child => {
                             let arrowTarget = boxes[child];
                             if(arrowSource && arrowTarget) {
                                 return <ArrowSvg key={uuid.v4()}

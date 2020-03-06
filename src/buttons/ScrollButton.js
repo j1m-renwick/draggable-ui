@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
-import {store} from "./redux/store"
-import {scrollButtonClicked} from "./redux/actions";
+import {store} from "../redux/store"
+import {scrollButtonClicked} from "../redux/actions";
 
 export function ScrollButton(props) {
 
@@ -18,7 +18,7 @@ export function ScrollButton(props) {
 
     return (
         <Button style={{marginLeft: "10px"}} variant="dark" onClick={dispatchScrollEvent}>
-            <img alt="CREATE!" style={additionalStyling} src={require(props.direction === Direction.UP ? "./images/up-arrow.png" : "./images/down-arrow.png")}/>
+            <img alt="CREATE!" style={additionalStyling} src={require(props.direction === Direction.UP ? "../images/up-arrow.png" : "../images/down-arrow.png")}/>
         </Button>
 
 )

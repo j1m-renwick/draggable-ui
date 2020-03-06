@@ -6,12 +6,12 @@ import {
     iconDragYDistance,
     iconWidthsInViewPortCount,
     levelsInViewPortCount
-} from "./config/constants";
+} from "../constants/layoutConstants";
 import {debounce} from 'lodash';
-import {store} from "./redux/store";
-import {viewportScrolled} from "./redux/actions";
+import {store} from "../redux/store";
+import {viewportScrolled} from "../redux/actions";
 
-export function ViewPort(props) {
+export function ViewPort() {
 
     const LEVEL_SNAP_CUTOFF_PERCENTAGE = 0.5;
 

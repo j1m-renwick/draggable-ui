@@ -1,7 +1,7 @@
 import React from "react";
-import {BoxTypeClasses} from "./config/constants";
 import Badge from "react-bootstrap/Badge";
-import {Linker} from "./Linker";
+import {Linker} from "../box/Linker";
+import {BoxTypeClasses} from "../constants/BoxTypeClasses";
 
 
 export function BoxTypeBarConfigData(props) {

@@ -1,7 +1,7 @@
 import FormControl from "react-bootstrap/FormControl";
 import React from "react";
-import {store} from "./redux/store";
-import {boxConfigUpdated} from "./redux/actions";
+import {store} from "../redux/store";
+import {boxConfigUpdated} from "../redux/actions";
 
 
 export function ConfigInputField(props) {

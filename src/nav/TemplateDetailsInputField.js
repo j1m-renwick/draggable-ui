@@ -1,7 +1,7 @@
 import FormControl from "react-bootstrap/FormControl";
 import React from "react";
-import {store} from "./redux/store";
-import {TemplateDetailsUpdated} from "./redux/actions";
+import {store} from "../redux/store";
+import {TemplateDetailsUpdated} from "../redux/actions";
 import {InputGroup} from "react-bootstrap";
 import {useSelector} from "react-redux";
 

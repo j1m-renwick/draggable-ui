@@ -2,8 +2,8 @@ import React from "react";
 import {useSelector} from "react-redux";
 import InputGroup from "react-bootstrap/InputGroup";
 import {ConfigInputField} from "./ConfigInputField";
-import {BoxTypeClasses} from "./config/constants";
-import {Linker} from "./Linker";
+import {Linker} from "../box/Linker";
+import {BoxTypeClasses} from "../constants/BoxTypeClasses";
 
 export function ViewPortConfigData(props) {
 

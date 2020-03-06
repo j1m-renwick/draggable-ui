@@ -1,11 +1,11 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {iconDragYDistance, levelsInViewPortCount} from "./config/constants";
+import {iconDragYDistance, levelsInViewPortCount} from "../constants/layoutConstants";
 import {ViewPortConfigData} from "./ViewPortConfigData";
 import {BoxTypeBarConfigData} from "./BoxTypeBarConfigData";
 
 
-export function ConfigDataSection(props) {
+export function ConfigDataSection() {
 
     const additionalStyling = {
         "height": (iconDragYDistance * levelsInViewPortCount) + "px"

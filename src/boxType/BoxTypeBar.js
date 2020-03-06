@@ -1,10 +1,11 @@
 import React from "react";
-import {BoxTypeClasses, iconDiameter} from "./config/constants";
-import {store} from "./redux/store";
-import {boxTypeFocused} from "./redux/actions";
+import {iconDiameter} from "../constants/layoutConstants";
+import {store} from "../redux/store";
+import {boxTypeFocused} from "../redux/actions";
 import {useSelector} from "react-redux";
+import {BoxTypeClasses} from "../constants/BoxTypeClasses";
 
-export function BoxTypeBar(props) {
+export function BoxTypeBar() {
 
     const additionalStyling = {
         "width": iconDiameter + "px",

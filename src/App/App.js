@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import {ViewPort} from "./ViewPort";
-import {ConfigDataSection} from "./ConfigDataSection";
-import {ScrollButton} from "./ScrollButton";
+import {ViewPort} from "../viewPort/ViewPort";
+import {ConfigDataSection} from "../config/ConfigDataSection";
+import {ScrollButton} from "../buttons/ScrollButton";
 import {Provider} from "react-redux";
-import {store} from "./redux/store";
-import {CreateButton} from "./CreateButton";
-import {BoxTypeBar} from "./BoxTypeBar";
-import backgroundImage from "./images/background-pattern.jpg";
-import {NavBar} from "./NavBar";
-import {DeleteButton} from "./DeleteButton";
+import {store} from "../redux/store";
+import {CreateButton} from "../buttons/CreateButton";
+import {BoxTypeBar} from "../boxType/BoxTypeBar";
+import backgroundImage from "../images/background-pattern.jpg";
+import {NavBar} from "../nav/NavBar";
+import {DeleteButton} from "../buttons/DeleteButton";
 
 function App() {
     return (

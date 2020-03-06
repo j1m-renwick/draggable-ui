@@ -1,9 +1,9 @@
 import React from "react";
-import {store} from "./redux/store";
-import {linkageStarted, linkHoverFinished, linkHoverStarted} from "./redux/actions";
+import {store} from "../redux/store";
+import {linkageStarted, linkHoverFinished, linkHoverStarted} from "../redux/actions";
 import {useSelector} from "react-redux";
 import {get} from "lodash";
-import image from './images/link_16x16.png';
+import image from '../images/link_16x16.png';
 
 export function Linker(props) {
 

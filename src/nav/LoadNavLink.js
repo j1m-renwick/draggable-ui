@@ -1,8 +1,8 @@
 import {Nav} from "react-bootstrap";
 import React from "react";
-import {store} from "./redux/store";
-import {loadingInitiated} from "./redux/actions";
-import {defaultIconSpacingXMargin, iconDragYDistance} from "./config/constants";
+import {store} from "../redux/store";
+import {loadingInitiated} from "../redux/actions";
+import {defaultIconSpacingXMargin, iconDragYDistance} from "../constants/layoutConstants";
 
 export function LoadNavLink() {
 

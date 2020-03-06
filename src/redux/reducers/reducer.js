@@ -1,9 +1,9 @@
-import {Direction} from "../../ScrollButton";
-import {defaultIconSpacingXMargin, iconDragYDistance, levelCount, levelsInViewPortCount} from "../../config/constants";
+import {Direction} from "../../buttons/ScrollButton";
+import {defaultIconSpacingXMargin, iconDragYDistance, levelCount, levelsInViewPortCount} from "../../constants/layoutConstants";
 import {Cmd, loop} from "redux-loop";
 import {linkageFinished, dataLoaded} from "../actions";
 import {get, cloneDeep} from "lodash";
-import {newBoxData} from "../../config/BoxTypes";
+import {newBoxData} from "../../constants/NewBoxTypeInstances";
 import {initialState} from "../store";
 
 // TODO split reducers and CombineReducers

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
-import {store} from "./redux/store"
-import {boxCreated, boxDeleted} from "./redux/actions";
+import {store} from "../redux/store"
+import {boxDeleted} from "../redux/actions";
 import {useSelector} from "react-redux";
 
-export function DeleteButton(props) {
+export function DeleteButton() {
 
     const additionalStyling = {
         "width": "20px",
@@ -22,7 +22,7 @@ export function DeleteButton(props) {
     return (
 
         <Button variant="info" style={{marginLeft: "10px"}} onClick={dispatchCreate}>
-            <img alt="CREATE!" style={additionalStyling} src={require("./images/white-delete.png")}/>
+            <img alt="CREATE!" style={additionalStyling} src={require("../images/white-delete.png")}/>
         </Button>
     )
 }
