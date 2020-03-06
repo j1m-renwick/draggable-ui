@@ -12,11 +12,11 @@ const middleware = process.env.NODE_ENV !== 'production' ?
 
 export const initialState = {
     projectDetails: {
-        templateCode: null,
-        templateType: null,
-        templateVersion: null,
-        templateDescription: null,
-        templateVersionDescription: null,
+        templateCode: '',
+        templateType: '',
+        templateVersion: '',
+        templateDescription: '',
+        templateVersionDescription: '',
     },
     currentLevel: 0,
     linkageInProgress: false,
