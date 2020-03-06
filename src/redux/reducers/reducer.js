@@ -16,6 +16,7 @@ const reducer = (state, action) => {
         case 'BOX_FOCUSED':
             if(state.linkageInProgress) {
                 if(action.focusContext === "VIEW_PORT" && (state.focusedBoxId !== action.id)) {
+                    // TODO do not allow linkage if the box to be linked is not on a higher level than the box the link has originated from -> modal message
                     // find config link item for the previously focused box
                     let previouslyFocusedBoxConfig = state.config[state.focusedBoxId];
                     let previouslyFocusedLinkItem = get(previouslyFocusedBoxConfig, state.linkageReference);
