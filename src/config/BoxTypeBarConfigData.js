@@ -1,7 +1,7 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
 import {Linker} from "../box/Linker";
-import {BoxTypeClasses} from "../constants/BoxTypeClasses";
+import {BoxTypeClasses, prettyNameMap} from "../constants/BoxTypeClasses";
 
 
 export function BoxTypeBarConfigData(props) {
@@ -12,7 +12,7 @@ export function BoxTypeBarConfigData(props) {
 
     return (
         <>
-            <h4 className="italicise">{props.focusBoxType}</h4>
+            <h4 className="italicise">{prettyNameMap[props.focusBoxType]}</h4>
             <br/>
             {
                 Object.entries(BoxTypeClasses[props.focusBoxType]).map(item => {

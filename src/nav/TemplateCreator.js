@@ -63,7 +63,7 @@ export function process(stateJson) {
             "section": "EXPECTATIONS",
             "visibilityCheckers": [],
             "text1stPerson": configJson.question.value,
-            "guidanceScript1stPerson": "Some guidance text here",
+            "guidanceScript1stPerson": configJson.guidance.value,
             "answers": []
         };
 

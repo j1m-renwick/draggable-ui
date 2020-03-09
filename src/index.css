@@ -32,9 +32,9 @@ code {
     display: flex
 }
 
-.spiral-icon {
+.free-text {
     background-size: contain;
-    background-image: url('images/spiral-icon.png');
+    background-image: url('images/free_text_icon.png');
 }
 
 .equals-icon {

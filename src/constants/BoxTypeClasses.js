@@ -1,9 +1,10 @@
 export const BoxTypeClasses = {
-    "spiral-icon": {
-        title: {
+    "free-text": {
+        question: {
             input: "TEXT"
         },
-        question: {
+        guidance: {
+            alias: "guidance text",
             input: "TEXT"
         },
         answers: {
@@ -12,10 +13,11 @@ export const BoxTypeClasses = {
         }
     },
     "equals-icon": {
-        title: {
+        question: {
             input: "TEXT"
         },
-        question: {
+        guidance: {
+            alias: "guidance text",
             input: "TEXT"
         },
         answers: {
@@ -25,10 +27,11 @@ export const BoxTypeClasses = {
         }
     },
     "pic-icon": {
-        title: {
+        question: {
             input: "TEXT"
         },
-        question: {
+        guidance: {
+            alias: "guidance text",
             input: "TEXT"
         },
         answers: {
@@ -37,4 +40,10 @@ export const BoxTypeClasses = {
             linkable: true
         }
     }
+};
+
+export const prettyNameMap = {
+    "free-text": "Free Text",
+    "equals-icon": "Equals Icon",
+    "pic-icon": "Pic Icon"
 };

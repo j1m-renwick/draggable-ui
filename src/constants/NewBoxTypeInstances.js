@@ -19,24 +19,24 @@ export const newBoxData = (boxType) => {
 
 const getConfigData = (boxType) => {
     switch(boxType) {
-        case "spiral-icon":
-            return newSpiralIcon();
+        case "free-text":
+            return newFreeTextBox();
         case "equals-icon":
-            return newEqualsIcon();
+            return newEqualsBox();
         case "pic-icon":
-            return newPicIcon();
+            return newPicBox();
         default:
             console.error("could not create new box instance of type: " + boxType);
     }
 };
 
 // TODO delegate each config item to its own new instance function based on its input type
-const newSpiralIcon = () => {
+const newFreeTextBox = () => {
     let json = {
-        title: {
+        question: {
             value: ""
         },
-        question: {
+        guidance: {
             value: ""
         },
         answers: {}
@@ -52,12 +52,12 @@ const newSpiralIcon = () => {
     return json;
 };
 
-const newEqualsIcon = () => {
+const newEqualsBox = () => {
     let json = {
-        title: {
+        question: {
             value: ""
         },
-        question: {
+        guidance: {
             value: ""
         },
         answers: {}
@@ -70,12 +70,12 @@ const newEqualsIcon = () => {
 };
 
 // TODO this isn't correct
-const newPicIcon = () => {
+const newPicBox = () => {
     let json = {
-        title: {
+        question: {
             value: ""
         },
-        question: {
+        guidance: {
             value: ""
         },
         answers: {}

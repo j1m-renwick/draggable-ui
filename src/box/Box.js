@@ -11,6 +11,7 @@ export function Box(props) {
     const [y, setY] = useState(props.y);
 
     const boxes = useSelector(state => state.boxes);
+    const focusedBoxId =useSelector(state => state.focusedBoxId);
 
     const additionalStyling = {
         "width": iconDiameter + "px",
@@ -47,7 +48,7 @@ export function Box(props) {
         <Draggable grid={[iconDragXDistance, iconDragYDistance]}
                    defaultPosition={{x: props.x, y: props.y}} position={{x: x, y: y}}
                    bounds=".grid" onDrag={onControlledDrag} onStop={onStopDrag}>
-            <div className={props.type} style={additionalStyling} onClick={() => select()}/>
+            <div className={props.type + (focusedBoxId === props.boxId ? " focused" : "")} style={additionalStyling} onClick={() => select()}/>
         </Draggable>
     )
 
