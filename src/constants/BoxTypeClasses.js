@@ -16,9 +16,11 @@ export const BoxTypeClasses = {
         guidance: {
             alias: "guidance text",
             input: "TEXT"
-        },
+        }
+        ,
         answers: {
-            input: "ANSWER_TEXT_ARRAY",
+            alias: "answer",
+            input: "BLANK_ANSWER",
             linkable: true
         }
     },

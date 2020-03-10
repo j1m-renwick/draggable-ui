@@ -42,11 +42,6 @@ const newFreeTextBox = () => {
         answers: {}
     };
     json.answers[uuid.v4()] = {
-        value: "",
-        linkable: true
-    };
-    json.answers[uuid.v4()] = {
-        value: "",
         linkable: true
     };
     return json;

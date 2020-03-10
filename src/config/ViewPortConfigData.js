@@ -57,6 +57,19 @@ export function ViewPortConfigData(props) {
                         }
                     </div>
                 );
+            case 'BLANK_ANSWER':
+                return (
+                    <div key={label}>
+                        <label className="capitalise" htmlFor={label}>{label}</label>
+                        {
+                            Object.entries(item).map(it =>
+                                (
+                                    <Linker boxId={props.focusedId} reference={identifier + "." + it[0]} linkedId={item[it[0]].linkedId}/>
+                                )
+                            )
+                        }
+                    </div>
+                );
             default:
                 console.error("Warning: Attribute '" + label + "' has an unrecognised render type of '" + type + "' and will not be rendered.");
                 return <div key={label}/>
