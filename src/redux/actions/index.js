@@ -10,6 +10,12 @@ const boxFocused = (id, type, focusContext) => {
     }
 };
 
+export const boxUnfocused = () => {
+    return {
+        type: 'BOX_UNFOCUSED'
+    }
+};
+
 export const boxCreated = () => ({
     type: 'BOX_CREATED'
 });

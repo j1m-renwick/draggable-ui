@@ -51,6 +51,13 @@ const reducer = (state, action) => {
                     focusBoxType: action.focusBoxType
                 });
             }
+        case 'BOX_UNFOCUSED':
+            let newState = Object.assign({}, state, {focusedBoxId: undefined, focusBoxType: undefined, focusContext: undefined});
+            if (state.linkageInProgress) {
+                return loop(newState, Cmd.action(linkageFinished()));
+            } else {
+                return newState;
+            }
         case 'BOX_DRAGGED':
             boxes = {...state.boxes};
             let boxToUpdate = cloneDeep(boxes[action.id]);

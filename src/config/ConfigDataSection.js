@@ -5,7 +5,7 @@ import {ViewPortConfigData} from "./ViewPortConfigData";
 import {BoxTypeBarConfigData} from "./BoxTypeBarConfigData";
 
 
-export function ConfigDataSection() {
+export function ConfigDataSection(props) {
 
     const additionalStyling = {
         "height": (iconDragYDistance * levelsInViewPortCount) + "px"
@@ -27,7 +27,7 @@ export function ConfigDataSection() {
     }
 
     return (
-        <div key={focusedId} className="config" style={additionalStyling}>
+        <div ref={props.id} key={focusedId} className="config" style={additionalStyling}>
             {renderConfigData()}
         </div>
     );
