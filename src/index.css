@@ -37,9 +37,9 @@ code {
     background-image: url('images/free_text_icon.png');
 }
 
-.equals-icon {
+.single {
     background-size: contain;
-    background-image: url('images/equals-icon.png');
+    background-image: url('images/single-icon.png');
 }
 
 .pic-icon {

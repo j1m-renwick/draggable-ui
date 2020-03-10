@@ -1,3 +1,13 @@
+// FREETEXT
+// SINGLE
+// FREETEXTSHORT
+// - Add triage level and group score fields
+// - Add 1st / 3rd person data
+// fix FREETEXT to have no answer
+
+
+
+
 export const BoxTypeClasses = {
     "free-text": {
         question: {
@@ -12,7 +22,7 @@ export const BoxTypeClasses = {
             linkable: true
         }
     },
-    "equals-icon": {
+    "single": {
         question: {
             input: "TEXT"
         },
@@ -21,8 +31,7 @@ export const BoxTypeClasses = {
             input: "TEXT"
         },
         answers: {
-            alias: "answer",
-            input: "ANSWER_TEXT",
+            input: "ANSWER_TEXT_ARRAY",
             linkable: true
         }
     },
@@ -44,12 +53,12 @@ export const BoxTypeClasses = {
 
 export const prettyNameMap = {
     "free-text": "Free Text",
-    "equals-icon": "Equals Icon",
+    "single": "Two Options",
     "pic-icon": "Pic Icon"
 };
 
 export const exportTypeMap = {
     "free-text": "FREETEXT",
-    "equals-icon": "EQUALSICON",
+    "single": "SINGLE",
     "pic-icon": "PICICON"
 };

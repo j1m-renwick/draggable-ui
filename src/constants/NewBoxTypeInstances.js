@@ -21,8 +21,8 @@ const getConfigData = (boxType) => {
     switch(boxType) {
         case "free-text":
             return newFreeTextBox();
-        case "equals-icon":
-            return newEqualsBox();
+        case "single":
+            return newSingleBox();
         case "pic-icon":
             return newPicBox();
         default:
@@ -52,7 +52,7 @@ const newFreeTextBox = () => {
     return json;
 };
 
-const newEqualsBox = () => {
+const newSingleBox = () => {
     let json = {
         question: {
             value: ""
@@ -61,6 +61,10 @@ const newEqualsBox = () => {
             value: ""
         },
         answers: {}
+    };
+    json.answers[uuid.v4()] = {
+        value: "",
+        linkable: true
     };
     json.answers[uuid.v4()] = {
         value: "",
