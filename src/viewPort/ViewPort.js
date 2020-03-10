@@ -17,7 +17,7 @@ export function ViewPort(props) {
     const currentLevel = useSelector(state => state.currentLevel);
     const linkageInProgress = useSelector(state => state.linkageInProgress);
 
-    useEffect(() => {props.id.current.scrollTop = currentLevel * iconDragYDistance}, [currentLevel]);
+    useEffect(() => {props.id.current.scrollTop = currentLevel * iconDragYDistance}, [currentLevel, props.id]);
 
     const additionalStyling = {
         "height": (iconDragYDistance * levelsInViewPortCount) + "px",
