@@ -47,3 +47,9 @@ export const prettyNameMap = {
     "equals-icon": "Equals Icon",
     "pic-icon": "Pic Icon"
 };
+
+export const exportTypeMap = {
+    "free-text": "FREETEXT",
+    "equals-icon": "EQUALSICON",
+    "pic-icon": "PICICON"
+};

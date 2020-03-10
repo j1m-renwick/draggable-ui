@@ -1,3 +1,5 @@
+import {exportTypeMap} from "../constants/BoxTypeClasses";
+
 // code generator takes a UUID and supplies a codeName - the same one if the GUID has already been passed, otherwise a new one
 const codeGenerator = (prefix, typeCode) => {
     let instance = {};
@@ -59,7 +61,7 @@ export function process(stateJson) {
 
         let question = {
             "codeName": questionCode,
-            "type": boxJson.type,
+            "type": exportTypeMap[boxJson.type],
             "section": "EXPECTATIONS",
             "visibilityCheckers": [],
             "text1stPerson": configJson.question.value,
