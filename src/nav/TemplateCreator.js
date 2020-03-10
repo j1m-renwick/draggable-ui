@@ -22,13 +22,13 @@ const codeGenerator = (prefix, typeCode) => {
 export function process(stateJson) {
 
     let generatedJson = {};
-    generatedJson["codeName"] = "SOME_CODENAME";
-    generatedJson["description"] = "Some description";
-    generatedJson["type"] = "SOME_TYPE";
-    generatedJson["version"] = "1.2.3";
-    generatedJson["versionDescription"] = "some version description";
-    generatedJson["publicationDateTime"] = new Date().toISOString();
-    generatedJson["questions"] = [];
+    generatedJson.codeName = stateJson.projectDetails.templateCode;
+    generatedJson.description = stateJson.projectDetails.templateDescription;
+    generatedJson.type = stateJson.projectDetails.templateType;
+    generatedJson.version = stateJson.projectDetails.templateVersion;
+    generatedJson.versionDescription = stateJson.projectDetails.templateVersionDescription;
+    generatedJson.publicationDateTime = new Date().toISOString();
+    generatedJson.questions = [];
     let questionGenerator = codeGenerator('Q', 'SOME_TYPE');
     let answerGenerator = codeGenerator('A', 'SOME_TYPE');
 
