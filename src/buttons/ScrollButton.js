@@ -17,7 +17,7 @@ export function ScrollButton(props) {
     }
 
     return (
-        <Button style={{marginLeft: "10px"}} variant="dark" onClick={dispatchScrollEvent}>
+        <Button onClick={e => e.stopPropagation()} style={{marginLeft: "10px"}} variant="dark" onMouseUp={dispatchScrollEvent}>
             <img alt="CREATE!" style={additionalStyling} src={require(props.direction === Direction.UP ? "../images/up-arrow.png" : "../images/down-arrow.png")}/>
         </Button>
 

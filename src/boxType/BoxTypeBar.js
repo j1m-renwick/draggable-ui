@@ -5,7 +5,7 @@ import {boxTypeFocused} from "../redux/actions";
 import {useSelector} from "react-redux";
 import {BoxTypeClasses} from "../constants/BoxTypeClasses";
 
-export function BoxTypeBar(props) {
+export function BoxTypeBar() {
 
     const additionalStyling = {
         "width": iconDiameter + "px",
@@ -20,7 +20,7 @@ export function BoxTypeBar(props) {
     }
 
     return (
-        <div ref={props.id} className="bar">
+        <div onClick={e => e.stopPropagation()} className="bar">
             {
                 Object.entries(BoxTypeClasses).map(entry => <div key={entry[0]} style={additionalStyling} className={entry[0] + (focusedBoxId === entry[0]? " focused": "")} onClick={() => dispatchCreate(entry[0])}/>)
             }

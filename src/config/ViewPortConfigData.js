@@ -64,7 +64,7 @@ export function ViewPortConfigData(props) {
                         {
                             Object.entries(item).map(it =>
                                 (
-                                    <Linker boxId={props.focusedId} reference={identifier + "." + it[0]} linkedId={item[it[0]].linkedId}/>
+                                    <Linker key={it[0]} boxId={props.focusedId} reference={identifier + "." + it[0]} linkedId={item[it[0]].linkedId}/>
                                 )
                             )
                         }

@@ -21,7 +21,7 @@ export function DeleteButton() {
 
     return (
 
-        <Button variant="info" style={{marginLeft: "10px"}} onClick={dispatchCreate}>
+        <Button onClick={e => e.stopPropagation()} variant="info" style={{marginLeft: "10px"}} onMouseUp={dispatchCreate}>
             <img alt="CREATE!" style={additionalStyling} src={require("../images/white-delete.png")}/>
         </Button>
     )

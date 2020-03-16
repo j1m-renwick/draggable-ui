@@ -20,6 +20,6 @@ export function CreateButton() {
     }
 
     return (
-        <Button variant="info" onClick={dispatchCreate}><img alt="CREATE!" style={additionalStyling} src={require("../images/white-plus.png")}/></Button>
+        <Button onClick={e => e.stopPropagation()} variant="info" onMouseUp={dispatchCreate}><img alt="CREATE!" style={additionalStyling} src={require("../images/white-plus.png")}/></Button>
     )
 }
