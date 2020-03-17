@@ -1,12 +1,6 @@
-// FREETEXT
-// SINGLE
-// FREETEXTSHORT
+// TODO
 // - Add triage level and group score fields
 // - Add 1st / 3rd person data
-// fix FREETEXT to have no answer
-
-
-
 
 export const BoxTypeClasses = {
     "free-text": {
@@ -16,8 +10,21 @@ export const BoxTypeClasses = {
         guidance: {
             alias: "guidance text",
             input: "TEXT"
+        },
+        answers: {
+            alias: "answer",
+            input: "BLANK_ANSWER",
+            linkable: true
         }
-        ,
+    },
+    "free-text-short": {
+        question: {
+            input: "TEXT"
+        },
+        guidance: {
+            alias: "guidance text",
+            input: "TEXT"
+        },
         answers: {
             alias: "answer",
             input: "BLANK_ANSWER",
@@ -36,31 +43,31 @@ export const BoxTypeClasses = {
             input: "ANSWER_TEXT_ARRAY",
             linkable: true
         }
-    },
-    "pic-icon": {
-        question: {
-            input: "TEXT"
-        },
-        guidance: {
-            alias: "guidance text",
-            input: "TEXT"
-        },
-        answers: {
-            alias: "answer",
-            input: "IMAGE_UPLOAD_URL",
-            linkable: true
-        }
+    // },
+    // "pic-icon": {
+    //     question: {
+    //         input: "TEXT"
+    //     },
+    //     guidance: {
+    //         alias: "guidance text",
+    //         input: "TEXT"
+    //     },
+    //     answers: {
+    //         alias: "answer",
+    //         input: "IMAGE_UPLOAD_URL",
+    //         linkable: true
+    //     }
     }
 };
 
 export const prettyNameMap = {
     "free-text": "Free Text",
     "single": "Two Options",
-    "pic-icon": "Pic Icon"
+    "free-text-short": "Short Text"
 };
 
 export const exportTypeMap = {
     "free-text": "FREETEXT",
     "single": "SINGLE",
-    "pic-icon": "PICICON"
+    "pic-icon": "FREETEXTSHORT"
 };

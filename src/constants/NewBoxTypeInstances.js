@@ -23,8 +23,8 @@ const getConfigData = (boxType) => {
             return newFreeTextBox();
         case "single":
             return newSingleBox();
-        case "pic-icon":
-            return newPicBox();
+        case "free-text-short":
+            return newFreeTextShortBox();
         default:
             console.error("could not create new box instance of type: " + boxType);
     }
@@ -32,6 +32,22 @@ const getConfigData = (boxType) => {
 
 // TODO delegate each config item to its own new instance function based on its input type
 const newFreeTextBox = () => {
+    let json = {
+        question: {
+            value: ""
+        },
+        guidance: {
+            value: ""
+        },
+        answers: {}
+    };
+    json.answers[uuid.v4()] = {
+        linkable: true
+    };
+    return json;
+};
+
+const newFreeTextShortBox = () => {
     let json = {
         question: {
             value: ""
@@ -68,20 +84,19 @@ const newSingleBox = () => {
     return json;
 };
 
-// TODO this isn't correct
-const newPicBox = () => {
-    let json = {
-        question: {
-            value: ""
-        },
-        guidance: {
-            value: ""
-        },
-        answers: {}
-    };
-    json.answers[uuid.v4()] = {
-        value: "",
-        linkable: true
-    };
-    return json;
-};
+// const newPicBox = () => {
+//     let json = {
+//         question: {
+//             value: ""
+//         },
+//         guidance: {
+//             value: ""
+//         },
+//         answers: {}
+//     };
+//     json.answers[uuid.v4()] = {
+//         value: "",
+//         linkable: true
+//     };
+//     return json;
+// };

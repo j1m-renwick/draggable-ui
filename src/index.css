@@ -37,14 +37,14 @@ code {
     background-image: url('images/free_text_icon.png');
 }
 
+.free-text-short {
+    background-size: contain;
+    background-image: url('images/free_short_text_icon.png');
+}
+
 .single {
     background-size: contain;
     background-image: url('images/single-icon.png');
-}
-
-.pic-icon {
-    background-size: contain;
-    background-image: url('images/pic-icon.png');
 }
 
 .config {
