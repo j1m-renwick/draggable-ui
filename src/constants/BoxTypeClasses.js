@@ -1,6 +1,9 @@
 // TODO
 // - Add triage level and group score fields
 // - Add 1st / 3rd person data
+// - Add proper visibility checkers
+// - Add restrictions - add as option on each parent element link
+
 
 export const BoxTypeClasses = {
     "free-text": {
@@ -69,5 +72,5 @@ export const prettyNameMap = {
 export const exportTypeMap = {
     "free-text": "FREETEXT",
     "single": "SINGLE",
-    "pic-icon": "FREETEXTSHORT"
+    "free-text-short": "FREETEXTSHORT"
 };
